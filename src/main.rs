@@ -34,7 +34,7 @@ use plate_service::PlateService;
 use config::Config;
 
 const SERVICE_NAME:    &str = "DahuaParkingService";
-const SERVICE_DISPLAY: &str = "Dahua Parking Management Service";
+const SERVICE_DISPLAY: &str = "zevDahuaRust";
 const SERVICE_DESC:    &str = "Dahua ALPR camera plate reader with barrier control";
 
 // ─── Windows Service boilerplate ─────────────────────────────────────────────
