@@ -1,0 +1,1 @@
+D:\zolbayar\dahua-service\target\debug\dahua-service.exe: D:\zolbayar\dahua-service\src\api.rs D:\zolbayar\dahua-service\src\camera_manager.rs D:\zolbayar\dahua-service\src\config.rs D:\zolbayar\dahua-service\src\main.rs D:\zolbayar\dahua-service\src\plate_listener.rs D:\zolbayar\dahua-service\src\plate_service.rs D:\zolbayar\dahua-service\src\sdk.rs
