@@ -174,28 +174,30 @@ impl CameraManager {
     }
 
     pub fn open_gate(&self, ip: &str) -> bool {
-        let sdk = match DahuaSdk::load() { Ok(s) => s, Err(_) => return false };
-        let handle = match self.handle_for_ip(ip) {
-            Some(h) => h,
-            None => { warn!("open_gate: IP {ip} handle олдсонгүй"); return false; }
-        };
+    let sdk = match DahuaSdk::load() { Ok(s) => s, Err(_) => return false };
+    let handle = match self.handle_for_ip(ip) {
+        Some(h) => h,
+        None => { warn!("open_gate: IP {ip} handle олдсонгүй"); return false; }
+    };
 
-        let mut strobe = NET_CTRL_OPEN_STROBE::default();
-        strobe.nChannelId = 0;
+    let mut strobe = NET_CTRL_OPEN_STROBE::default();
+    strobe.nChannelId = 0;
 
-        let ret = unsafe {
-            (sdk.control_device)(
-                handle,
-                EM_CTRL_OPEN_STROBE,
-                &mut strobe as *mut NET_CTRL_OPEN_STROBE as *mut c_void,
-                5000,
-            )
-        };
-        let err = unsafe { (sdk.get_last_error)() };
-        println!("Хаалга онгойлгохоос ирж буй хариу: {} ({ip}) err={err:#x}",
-            if ret != 0 { "OK" } else { "FAIL" });
-        ret != 0
-    }
+    println!("NET_CTRL_OPEN_STROBE size: {}", std::mem::size_of::<NET_CTRL_OPEN_STROBE>());
+    println!("dwSize field: {}", strobe.dwSize);
+
+    let ret = unsafe {
+        (sdk.control_device)(
+            handle,
+            EM_CTRL_OPEN_STROBE,
+            &mut strobe as *mut NET_CTRL_OPEN_STROBE as *mut c_void,
+            5000,
+        )
+    };
+    let err = unsafe { (sdk.get_last_error)() };
+    println!("Хаалга: {} ({ip}) err={err:#x}", if ret != 0 { "OK" } else { "FAIL" });
+    ret != 0
+}
 
 
     pub fn heartbeat(&self) {

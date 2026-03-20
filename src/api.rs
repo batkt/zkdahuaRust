@@ -35,6 +35,7 @@ pub async fn run_api_server(port: u16) {
 
 /// Open barrier gate — called by frontend after server approves plate
 async fn neeye(Path(ip): Path<String>) -> impl IntoResponse {
+    println!("======= NEEYE HIT =======");
     println!("neeye called for ip: {ip}");
     if let Some(mgr) = CAMERA_MANAGER.get() {
         if mgr.handle_for_ip(&ip).is_some() {
@@ -61,11 +62,11 @@ async fn sambar(Path((ip, text, dun)): Path<(String, String, String)>) -> impl I
     let carpass_0 = if is_entrance { company_name.clone() } else { "".to_string() };
     let params = [
         "TrafficLatticeScreen[0].StatusChangeTime=1".to_string(),
-        format!("TrafficLatticeScreen[0].Normal.Contents[0]=str({text})"),
-        format!("TrafficLatticeScreen[0].Normal.Contents[1]=str({line1})"), 
-        format!("TrafficLatticeScreen[0].Normal.Contents[2]=str({line2})"),
-        format!("TrafficLatticeScreen[0].CarPass.Contents[0]=str({carpass_0})"),
-        "TrafficLatticeScreen[0].CarPass.Contents[1]=SysTime".to_string(),
+        format!("TrafficLatticeScreen[0].Normal.Contents.[0]=str({text})"),
+        format!("TrafficLatticeScreen[0].Normal.Contents.[1]=str({line1})"), 
+        format!("TrafficLatticeScreen[0].Normal.Contents.[2]=str({line2})"),
+        format!("TrafficLatticeScreen[0].CarPass.Contents.[0]=str({carpass_0})"),
+        "TrafficLatticeScreen[0].CarPass.Contents.[1]=SysTime".to_string(),
     ];
 
     let url = format!(
@@ -88,13 +89,11 @@ async fn sambar(Path((ip, text, dun)): Path<(String, String, String)>) -> impl I
 }
 async fn send_sambar_request(url: &str, password: &str) -> anyhow::Result<String> {
     let client = reqwest::Client::builder()
-        .timeout(std::time::Duration::from_secs(5))
-        .build()?;
+    .timeout(std::time::Duration::from_secs(5))
+    .danger_accept_invalid_certs(true)  // ← нэм
+    .build()?;
 
-    // Use reqwest::Url directly to avoid re-encoding
-    let parsed = reqwest::Url::parse(url)?;
-
-    let first = client.get(parsed.clone()).send().await?;
+    let first = client.get(url).send().await?;
     println!("First response status: {}", first.status());
 
     let resp = if first.status() == reqwest::StatusCode::UNAUTHORIZED {
@@ -105,11 +104,19 @@ async fn send_sambar_request(url: &str, password: &str) -> anyhow::Result<String
             .to_string();
         println!("WWW-Authenticate: {auth_header}");
 
-        let mut prompt = digest_auth::parse(&auth_header)?;
-        let context = digest_auth::AuthContext::new("admin", password, url);
-        let answer = prompt.respond(&context)?.to_header_string();
+        // Extract just the path+query for digest URI — use original url
+       let uri = if let Some(pos) = url.find("/cgi-bin") {
+            &url[pos..]
+        } else {
+            url
+        };
 
-        client.get(parsed).header("Authorization", answer).send().await?
+        let mut prompt = digest_auth::parse(&auth_header)?;
+        let context = digest_auth::AuthContext::new("admin", password, uri);
+        let answer = prompt.respond(&context)?.to_header_string();
+        println!("Auth answer: {answer}");
+
+        client.get(url).header("Authorization", answer).send().await?
     } else {
         first
     };

@@ -1,7 +1,7 @@
     [server]
     url          = "http://103.143.40.230:8081/zogsoolSdkService"
-    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YWJjMjI1MTAyMjhhNzQ1NGJkZjVlZCIsIm5lciI6ItCc0LDRgNCz0LDQtCDRiNC40LvRgtCz0Y3RjdC9INGC0LHQsSIsImJhaWd1dWxsYWdpaW5JZCI6IjY4YWJjMjI0MTAyMjhhNzQ1NGJkZjVlOSIsImlhdCI6MTc3Mzg4NjY4N30.o7DKGakJFkCVvkCFobTT737BIGf5rdi3yB6Az6L3duk"
-    barilgiinId  = "68abc22410228a7454bdf5ea"
+    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGYzNDM3YjQxYTQ3ODE5NWRkM2Q0ZSIsIm5lciI6ItCRLtCR0Y_QvNCx0LDRhtC-0LPRgiIsImJhaWd1dWxsYWdpaW5JZCI6IjY3MGYzNDM3YjQxYTQ3ODE5NWRkM2Q0YiIsImlhdCI6MTc3Mzk3MjA0Nn0.fHWCQTES9pzNiEMz1eGDZgrnrfCc9I013TNCCRck9BM"
+    barilgiinId  = "670f3437b41a478195dd3d4c"
     timeout_secs = 30
     retry_count  = 3
 
@@ -11,30 +11,16 @@
     connect_timeout_ms      = 5000
     max_connect_retries     = 5
     port                    = 37777
-    org_name = "Grand Plaza"
+    org_name = "Нийслэл худалдааны төв"
     company_name = "ParkEase"
 
     [[cameras]]
-    ip       = "192.168.1.110"
-    password = "admin123"
+    ip       = "172.16.18.119"
+    password = "Admin123"
     http_port = 80
     gate = "entrance"
     [[cameras]]
-    ip       = "192.168.1.109"
-    password = "admin123"
-    http_port = 80
-    gate = "entrance"
-    [[cameras]]
-    ip       = "192.168.1.108"
-    password = "admin123"
+    ip       = "172.16.18.120"
+    password = "Admin123"
     http_port = 80
     gate = "exit"
-    [[cameras]]
-    ip       = "192.168.1.111"
-    password = "admin123"
-    http_port = 80
-    gate = "exit"
-
-
-
-

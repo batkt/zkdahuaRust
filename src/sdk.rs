@@ -92,7 +92,7 @@ impl Default for NET_OUT_LOGIN_WITH_HIGHLEVEL_SECURITY {
     }
 }
 
-pub const EM_CTRL_OPEN_STROBE: c_int = 14;
+pub const EM_CTRL_OPEN_STROBE: c_int = 263;
 pub const CFG_CMD_TRAFFIC_LATTICE_SCREEN: c_int = 10000; // CLIENT_SetConfig type ID for TrafficLatticeScreen
 
 // ─── Screen display ───────────────────────────────────────────────────────────

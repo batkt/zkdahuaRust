@@ -16,8 +16,9 @@ static LAST_PLATE: Lazy<Mutex<HashMap<String, Instant>>> = Lazy::new(|| Mutex::n
 
 /// Start plate listener for one camera — runs forever, reconnects on error
 pub async fn run_plate_listener(ip: String, password: String, port: u16, plate_tx: mpsc::Sender<PlateEvent>) {
+    let scheme = if port == 443 { "https" } else { "http" };
     let url = format!(
-        "http://{}:{}/cgi-bin/snapManager.cgi?action=attachFileProc&Flags[0]=Event&Events=[TrafficJunction]&heartbeat=5",
+        "{scheme}://{}:{}/cgi-bin/snapManager.cgi?action=attachFileProc&Flags[0]=Event&Events=[TrafficJunction]&heartbeat=5",
         ip, port
     );
     let mut consecutive_failures: u32 = 0;
@@ -51,8 +52,9 @@ async fn connect_and_read(
     consecutive_failures: &mut u32,
 ) -> anyhow::Result<()> {
     let client = reqwest::Client::builder()
-        .connect_timeout(std::time::Duration::from_secs(10))
-        .build()?;
+    .timeout(std::time::Duration::from_secs(90))
+    .danger_accept_invalid_certs(true)  // ← нэм
+    .build()?;
 
     // First request — get WWW-Authenticate header
     let first = client.get(url).send().await?;

@@ -159,7 +159,7 @@ async fn run_app(cfg: Config) -> anyhow::Result<()> {
     for cam in &cfg.cameras {
         let ip       = cam.ip.clone();
         let password = cam.password.clone();
-        let port     = cam.http_port.unwrap_or(80);
+        let port = cam.http_port.unwrap_or(443);
         let tx       = plate_tx.clone();
         tokio::spawn(async move {
             plate_listener::run_plate_listener(ip, password, port, tx).await;
