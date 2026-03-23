@@ -21,6 +21,7 @@ pub async fn run_api_server(port: u16) {
     let app = Router::new()
         .route("/api/neeye/:ip",             get(neeye))
         .route("/api/sambar/:ip/:text/:dun", get(sambar))
+        .route("/api/sambarOgnootoi/:ip/:text/:dun/:start/:end",    get(sambar_ognootoi))
         .route("/api/restartConnections",    post(restart_connections))
         .route("/api/health",                get(health))
         .fallback(handler_404)
@@ -83,6 +84,48 @@ async fn sambar(Path((ip, text, dun)): Path<(String, String, String)>) -> impl I
         }
         Err(e) => {
             println!("sambar Aldaa: {e}");
+            (StatusCode::INTERNAL_SERVER_ERROR, "aldaa".to_string())
+        }
+    }
+}
+async fn sambar_ognootoi(
+    Path((ip, text, dun, start, end)): Path<(String, String, String, String, String)>,
+) -> impl IntoResponse {
+    println!("sambarOgnootoi called for ip: {ip} text: {text} dun: {dun} start: {start} end: {end}");
+
+    let password = CAMERA_MANAGER
+        .get()
+        .map(|m| m.password_for_ip(&ip))
+        .unwrap_or_else(|| "admin123".to_string());
+
+    let dun_t = format!("{}T", dun);
+
+    let params = [
+        "TrafficLatticeScreen[0].StatusChangeTime=1".to_string(),
+        format!("TrafficLatticeScreen[0].Normal.Contents.[0]=str({text})"),
+        format!("TrafficLatticeScreen[0].Normal.Contents.[1]=str({dun_t})"),
+        format!("TrafficLatticeScreen[0].Normal.Contents.[2]=str({start})"),
+        format!("TrafficLatticeScreen[0].Normal.Contents.[3]=str({end})"),
+        format!("TrafficLatticeScreen[0].CarPass.Contents.[0]=str({text})"),
+        format!("TrafficLatticeScreen[0].CarPass.Contents.[1]=str({dun_t})"),
+        "TrafficLatticeScreen[0].CarPass.Contents.[2]=str()".to_string(),
+        "TrafficLatticeScreen[0].CarPass.Contents.[3]=SysTime".to_string(),
+    ];
+
+    let url = format!(
+        "http://{ip}/cgi-bin/configManager.cgi?action=setConfig&{}",
+        params.join("&")
+    );
+
+    println!("[SAMBAR_OGNOOTOI] URL: {url}");
+
+    match send_sambar_request(&url, &password).await {
+        Ok(body) => {
+            println!("sambarOgnootoi response: {body}");
+            (StatusCode::OK, "Amjilttai".to_string())
+        }
+        Err(e) => {
+            println!("sambarOgnootoi Aldaa: {e}");
             (StatusCode::INTERNAL_SERVER_ERROR, "aldaa".to_string())
         }
     }

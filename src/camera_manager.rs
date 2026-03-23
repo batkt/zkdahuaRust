@@ -199,7 +199,13 @@ impl CameraManager {
     ret != 0
 }
 
-
+    pub fn sambar_type_for_ip(&self, ip: &str) -> String {
+    self.cam_cfg
+        .iter()
+        .find(|c| c.ip == ip)
+        .and_then(|c| c.sambar_type.clone())
+        .unwrap_or_else(|| "sambar".to_string())
+}
     pub fn heartbeat(&self) {
     let sdk = match DahuaSdk::load() { Ok(s) => s, Err(_) => return };
     let cams = self.cameras.lock().unwrap().clone();
