@@ -1,6 +1,6 @@
     [server]
     url          = "https://turees.zevtabs.mn/api/zogsoolSdkService"
-    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjVhOTk4YjcyYTM1MzIxZWJkYmQ4YSIsIm5lciI6ItCa0JDQotCV0KDQmNCd0JMg0JDQodCi0KDQkCIsImJhaWd1dWxsYWdpaW5JZCI6IjY3YjVhOTk4YjcyYTM1MzIxZWJkYmQ4NyIsInNhbGJhcnV1ZCI6W3sic2FsYmFyaWluSWQiOiI2N2I1YTk5OGI3MmEzNTMyMWViZGJkODgiLCJkdXVzYWtoT2dub28iOiIyMDI2LTA0LTA1VDE1OjU5OjU5LjAwMFoifV0sImR1dXNha2hPZ25vbyI6IjIwMjYtMDQtMDVUMTU6NTk6NTkuMDAwWiIsImlhdCI6MTc3NDI1MDMzNCwiZXhwIjoxNzc0ODU1MTM0fQ.ugGucBqMKyumMlLePiaBKF_9jjspGNrQ7Zmn5aZUP1I"
+    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjVhOTk4YjcyYTM1MzIxZWJkYmQ4YSIsIm5lciI6ItCa0JDQotCV0KDQmNCd0JMg0JDQodCi0KDQkCIsImJhaWd1dWxsYWdpaW5JZCI6IjY3YjVhOTk4YjcyYTM1MzIxZWJkYmQ4NyIsImlhdCI6MTc3NDMxNTAzOX0.RBU6OgqoTAowGqFmqwmnSiAGO6PbYcsWZufEDlpyyEk"
     barilgiinId  = "67b5a998b72a35321ebdbd88"
     timeout_secs = 30
     retry_count  = 3
