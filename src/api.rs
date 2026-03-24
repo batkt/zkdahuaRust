@@ -70,8 +70,13 @@ async fn sambar(Path((ip, text, dun)): Path<(String, String, String)>) -> impl I
         "TrafficLatticeScreen[0].CarPass.Contents.[1]=SysTime".to_string(),
     ];
 
+    let port = CAMERA_MANAGER.get()
+    .and_then(|m| m.http_port_for_ip(&ip))
+    .unwrap_or(80);
+    let scheme = if port == 443 { "https" } else { "http" };
+
     let url = format!(
-        "http://{ip}/cgi-bin/configManager.cgi?action=setConfig&{}",
+        "{scheme}://{ip}/cgi-bin/configManager.cgi?action=setConfig&{}",
         params.join("&")
     );
 
@@ -88,6 +93,7 @@ async fn sambar(Path((ip, text, dun)): Path<(String, String, String)>) -> impl I
         }
     }
 }
+
 async fn sambar_ognootoi(
     Path((ip, text, dun, start, end)): Path<(String, String, String, String, String)>,
 ) -> impl IntoResponse {
@@ -112,8 +118,13 @@ async fn sambar_ognootoi(
         "TrafficLatticeScreen[0].CarPass.Contents.[3]=SysTime".to_string(),
     ];
 
+    let port = CAMERA_MANAGER.get()
+    .and_then(|m| m.http_port_for_ip(&ip))
+    .unwrap_or(80);
+    let scheme = if port == 443 { "https" } else { "http" };
+
     let url = format!(
-        "http://{ip}/cgi-bin/configManager.cgi?action=setConfig&{}",
+        "{scheme}://{ip}/cgi-bin/configManager.cgi?action=setConfig&{}",
         params.join("&")
     );
 

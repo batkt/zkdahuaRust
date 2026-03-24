@@ -1,7 +1,7 @@
     [server]
     url          = "https://turees.zevtabs.mn/api/zogsoolSdkService"
-    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjVhOTk4YjcyYTM1MzIxZWJkYmQ4YSIsIm5lciI6ItCa0JDQotCV0KDQmNCd0JMg0JDQodCi0KDQkCIsImJhaWd1dWxsYWdpaW5JZCI6IjY3YjVhOTk4YjcyYTM1MzIxZWJkYmQ4NyIsImlhdCI6MTc3NDMxNTAzOX0.RBU6OgqoTAowGqFmqwmnSiAGO6PbYcsWZufEDlpyyEk"
-    barilgiinId  = "67b5a998b72a35321ebdbd88"
+    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2YyZjAyN2ZiYzc4OGY4NWU1MGI5MiIsIm5lciI6ItCh0LDQvNC80LAg0L_RgNC-INGB0L7Qu9GM0Y7RiNC9INGF0YXQuiIsImJhaWd1dWxsYWdpaW5JZCI6IjY1Y2YyZjAyN2ZiYzc4OGY4NWU1MGI5MCIsImlhdCI6MTc3NDIzODQ0OX0.mtaRsNLvizd3nV2jklUjfn_lsljKvXdR0NkTqCo8RRc"
+    barilgiinId  = "65cf2f927fbc788f85e5552e"
     timeout_secs = 30
     retry_count  = 3
 
@@ -11,18 +11,18 @@
     connect_timeout_ms      = 5000
     max_connect_retries     = 5
     port                    = 37777
-    org_name = "Astra"
+    org_name = "Сакура"
     company_name = "ParkEase"
 
     [[cameras]]
-    ip       = "192.168.1.56"
-    password = "asdf1234"
-    http_port = 80
+    ip       = "192.168.1.110"
+    password = "Admin123"
+    http_port = 443
     gate = "entrance"
-    sambar_type = "sambar"
+    sambar_type = "sambarOgnootoi"
     [[cameras]]
-    ip       = "192.168.1.55"
-    password = "asdf1234"
-    http_port = 80
+    ip       = "192.168.1.108"
+    password = "Admin123"
+    http_port = 443
     gate = "exit"
-    sambar_type = "sambar"
+    sambar_type = "sambarOgnootoi"

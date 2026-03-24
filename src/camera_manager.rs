@@ -107,7 +107,12 @@ impl CameraManager {
         self.connect_all();
         Ok(())
     }
-
+    pub fn http_port_for_ip(&self, ip: &str) -> Option<u16> {
+        self.cam_cfg
+            .iter()
+            .find(|c| c.ip == ip)
+            .and_then(|c| c.http_port)
+    }
     pub fn connect_all(&self) {
         let sdk = match DahuaSdk::load() { Ok(s) => s, Err(e) => { error!("{e}"); return; } };
 
