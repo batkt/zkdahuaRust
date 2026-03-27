@@ -52,52 +52,46 @@ async fn neeye(Path(ip): Path<String>) -> impl IntoResponse {
 async fn sambar(Path((ip, text, dun)): Path<(String, String, String)>) -> impl IntoResponse {
     println!("sambar called for ip: {ip} text: {text} dun: {dun}");
 
-    // 200 болон 201 нэг дэлгэц ашигладаг — 200 ирвэл 201-д ч явуулна
-    let sambar_ips: Vec<String> = if ip == "192.168.1.128" || ip == "192.168.1.232" {
-        vec!["192.168.1.128".to_string(), "192.168.1.232".to_string()]
-    } else {
-        vec![ip.clone()]
-    };
-
     let (password, is_entrance, org_name, company_name) = CAMERA_MANAGER
         .get()
-        .map(|m| (m.password_for_ip(&ip), m.is_entrance(&ip), m.org_name().to_string(), m.company_name().to_string()))
-        .unwrap_or(("admin123".to_string(), false, "ParkEase".to_string(), "ParkEase".to_string()));
+        .map(|m| (m.password_for_ip(&ip), m.is_entrance(&ip), m.org_name().to_string(),   m.company_name().to_string(),))
+       .unwrap_or(("admin123".to_string(), false, "ParkEase".to_string(), "ParkEase".to_string()));
 
     let dun_t = format!("{}T", dun);
     let line1 = if is_entrance { org_name.clone() } else { dun_t.clone() };
     let line2 = if is_entrance { "Төлбөртэй зогсоол".to_string() } else { org_name.clone() };
     let carpass_0 = if is_entrance { company_name.clone() } else { "".to_string() };
-
     let params = [
         "TrafficLatticeScreen[0].StatusChangeTime=1".to_string(),
         format!("TrafficLatticeScreen[0].Normal.Contents.[0]=str({text})"),
-        format!("TrafficLatticeScreen[0].Normal.Contents.[1]=str({line1})"),
+        format!("TrafficLatticeScreen[0].Normal.Contents.[1]=str({line1})"), 
         format!("TrafficLatticeScreen[0].Normal.Contents.[2]=str({line2})"),
         format!("TrafficLatticeScreen[0].CarPass.Contents.[0]=str({carpass_0})"),
         "TrafficLatticeScreen[0].CarPass.Contents.[1]=SysTime".to_string(),
     ];
-    let query = params.join("&");
 
-    for target_ip in &sambar_ips {
-        let port = CAMERA_MANAGER.get()
-            .and_then(|m| m.http_port_for_ip(target_ip))
-            .unwrap_or(80);
-        let scheme = if port == 443 { "https" } else { "http" };
-        let url = format!(
-            "{scheme}://{target_ip}/cgi-bin/configManager.cgi?action=setConfig&{query}"
-        );
-        println!("[SAMBAR] URL: {url}");
-        let pw = CAMERA_MANAGER.get()
-            .map(|m| m.password_for_ip(target_ip))
-            .unwrap_or_else(|| "admin123".to_string());
-        match send_sambar_request(&url, &pw).await {
-            Ok(body) => println!("sambar response {target_ip}: {body}"),
-            Err(e)   => println!("sambar Aldaa {target_ip}: {e}"),
+    let port = CAMERA_MANAGER.get()
+    .and_then(|m| m.http_port_for_ip(&ip))
+    .unwrap_or(80);
+    let scheme = if port == 443 { "https" } else { "http" };
+
+    let url = format!(
+        "{scheme}://{ip}/cgi-bin/configManager.cgi?action=setConfig&{}",
+        params.join("&")
+    );
+
+    println!("[SAMBAR] URL: {url}");
+
+    match send_sambar_request(&url, &password).await {
+        Ok(body) => {
+            println!("sambar response: {body}");
+            (StatusCode::OK, "Amjilttai".to_string())
+        }
+        Err(e) => {
+            println!("sambar Aldaa: {e}");
+            (StatusCode::INTERNAL_SERVER_ERROR, "aldaa".to_string())
         }
     }
-
-    (StatusCode::OK, "Amjilttai".to_string())
 }
 
 async fn sambar_ognootoi(
