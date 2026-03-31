@@ -38,14 +38,24 @@ pub async fn run_api_server(port: u16) {
 async fn neeye(Path(ip): Path<String>) -> impl IntoResponse {
     println!("======= NEEYE HIT =======");
     println!("neeye called for ip: {ip}");
-    if let Some(mgr) = CAMERA_MANAGER.get() {
-        if mgr.handle_for_ip(&ip).is_some() {
-            mgr.open_gate(&ip);
-            return (StatusCode::OK, "Amjilttai".to_string());
-        }
+
+    if CAMERA_MANAGER.get().and_then(|m| m.handle_for_ip(&ip)).is_none() {
+        println!("neeye Aldaa: IP {ip} not found");
+        return (StatusCode::INTERNAL_SERVER_ERROR, "aldaa".to_string());
     }
-    println!("neeye Aldaa: IP {ip} not found");
-    (StatusCode::INTERNAL_SERVER_ERROR, "aldaa".to_string())
+
+    // open_gate calls blocking SDK FFI — must use spawn_blocking
+    let ip_clone = ip.clone();
+    let success = tokio::task::spawn_blocking(move || {
+        CAMERA_MANAGER.get().map(|m| m.open_gate(&ip_clone)).unwrap_or(false)
+    }).await.unwrap_or(false);
+
+    if success {
+        (StatusCode::OK, "Amjilttai".to_string())
+    } else {
+        println!("neeye: Хаалга нээгдсэнгүй ({ip})");
+        (StatusCode::INTERNAL_SERVER_ERROR, "Хаалга нээгдсэнгүй".to_string())
+    }
 }
 
 /// LED screen display — HTTP configManager.cgi

@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
-use std::ffi::{c_void, CString};
+use std::ffi::c_void;
 use log::{warn, error};
 use once_cell::sync::OnceCell;
 use tokio::sync::mpsc;
@@ -8,10 +8,7 @@ use tokio::sync::mpsc;
 use crate::config::{CameraEntry, Config, SdkConfig};
 use crate::sdk::{
     DahuaSdk, NET_IN_LOGIN_WITH_HIGHLEVEL_SECURITY, NET_OUT_LOGIN_WITH_HIGHLEVEL_SECURITY,
-    NET_CTRL_OPEN_STROBE, NET_CFG_TRAFFIC_LATTICE_SCREEN_INFO,
-    EM_CTRL_OPEN_STROBE, EM_SCREEN_SHOW_CONTENTS_CUSTOM,
-    EM_SCREEN_SHOW_CONTENTS_INTIME, EM_SCREEN_SHOW_CONTENTS_OUTTIME,
-    EM_LATTICE_SCREEN_SHOW_TYPE_WORD_CONTROL, EM_LATTICE_SCREEN_CONTROL_TYPE_CAMERA_CONTROL,
+    NET_CTRL_OPEN_STROBE, EM_CTRL_OPEN_STROBE,
     fill_ansi, HANDLE,
 };
 
@@ -20,7 +17,7 @@ pub static CAMERA_MANAGER: OnceCell<CameraManager> = OnceCell::new();
 #[derive(Debug, Clone)]
 pub struct PlateEvent {
     pub plate:     String,
-    pub camera_ip: String
+    pub camera_ip: String,
 }
 
 #[derive(Clone)]
@@ -87,6 +84,21 @@ impl CameraManager {
             .unwrap_or_else(|| "admin123".to_string())
     }
 
+    pub fn http_port_for_ip(&self, ip: &str) -> Option<u16> {
+        self.cam_cfg
+            .iter()
+            .find(|c| c.ip == ip)
+            .and_then(|c| c.http_port)
+    }
+
+    pub fn sambar_type_for_ip(&self, ip: &str) -> String {
+        self.cam_cfg
+            .iter()
+            .find(|c| c.ip == ip)
+            .and_then(|c| c.sambar_type.clone())
+            .unwrap_or_else(|| "sambar".to_string())
+    }
+
     pub fn startup_and_connect(&self) -> anyhow::Result<()> {
         let sdk = DahuaSdk::load()?;
 
@@ -107,14 +119,9 @@ impl CameraManager {
         self.connect_all();
         Ok(())
     }
-    pub fn http_port_for_ip(&self, ip: &str) -> Option<u16> {
-        self.cam_cfg
-            .iter()
-            .find(|c| c.ip == ip)
-            .and_then(|c| c.http_port)
-    }
+
     pub fn connect_all(&self) {
-        let sdk = match DahuaSdk::load() { Ok(s) => s, Err(_) => return };
+        let sdk = match DahuaSdk::load() { Ok(s) => s, Err(e) => { error!("{e}"); return; } };
 
         let mut map  = self.handle_map.lock().unwrap();
         let mut cams = self.cameras.lock().unwrap();
@@ -154,7 +161,7 @@ impl CameraManager {
             fill_ansi(&mut in_param.szIP,       ip);
             fill_ansi(&mut in_param.szUserName, &sdk_cfg.username);
             fill_ansi(&mut in_param.szPassword, password);
-            in_param.nPort    = port;
+            in_param.nPort     = port;
             in_param.emSpecCap = 0; // TCP
 
             let handle = unsafe {
@@ -179,55 +186,128 @@ impl CameraManager {
     }
 
     pub fn open_gate(&self, ip: &str) -> bool {
-    let sdk = match DahuaSdk::load() { Ok(s) => s, Err(_) => return false };
-    let handle = match self.handle_for_ip(ip) {
-        Some(h) => h,
-        None => { warn!("open_gate: IP {ip} handle олдсонгүй"); return false; }
-    };
+        let sdk = match DahuaSdk::load() { Ok(s) => s, Err(_) => return false };
+        let handle = match self.handle_for_ip(ip) {
+            Some(h) => h,
+            None => { warn!("open_gate: IP {ip} handle олдсонгүй"); return false; }
+        };
 
-    let mut strobe = NET_CTRL_OPEN_STROBE::default();
-    strobe.nChannelId = 0;
+        let mut strobe = NET_CTRL_OPEN_STROBE::default();
+        strobe.nChannelId = 0;
 
-    println!("NET_CTRL_OPEN_STROBE size: {}", std::mem::size_of::<NET_CTRL_OPEN_STROBE>());
-    println!("dwSize field: {}", strobe.dwSize);
+        let ret = unsafe {
+            (sdk.control_device)(
+                handle,
+                EM_CTRL_OPEN_STROBE,
+                &mut strobe as *mut NET_CTRL_OPEN_STROBE as *mut c_void,
+                5000,
+            )
+        };
+        let err = unsafe { (sdk.get_last_error)() };
+        println!("Хаалга онгойлгохоос ирж буй хариу: {} ({ip}) err={err:#x}",
+            if ret != 0 { "OK" } else { "FAIL" });
 
-    let ret = unsafe {
-        (sdk.control_device)(
-            handle,
-            EM_CTRL_OPEN_STROBE,
-            &mut strobe as *mut NET_CTRL_OPEN_STROBE as *mut c_void,
-            5000,
-        )
-    };
-    let err = unsafe { (sdk.get_last_error)() };
-    println!("Хаалга: {} ({ip}) err={err:#x}", if ret != 0 { "OK" } else { "FAIL" });
-    ret != 0
-}
+        // Handle хуучирсан бол дахин холбогдоно
+        if ret == 0 {
+            warn!("open_gate FAIL — дахин холбогдож байна: {ip}");
+            self.reconnect_single(ip);
 
-    pub fn sambar_type_for_ip(&self, ip: &str) -> String {
-    self.cam_cfg
-        .iter()
-        .find(|c| c.ip == ip)
-        .and_then(|c| c.sambar_type.clone())
-        .unwrap_or_else(|| "sambar".to_string())
-}
-    pub fn heartbeat(&self) {
-    let cams = self.cameras.lock().unwrap().clone();
-    let mut needs_reconnect = false;
+            // Дахин оролдоно
+            if let Some(new_handle) = self.handle_for_ip(ip) {
+                let mut strobe2 = NET_CTRL_OPEN_STROBE::default();
+                strobe2.nChannelId = 0;
+                let ret2 = unsafe {
+                    (sdk.control_device)(
+                        new_handle,
+                        EM_CTRL_OPEN_STROBE,
+                        &mut strobe2 as *mut NET_CTRL_OPEN_STROBE as *mut c_void,
+                        5000,
+                    )
+                };
+                println!("Дахин оролдлого: {} ({ip})", if ret2 != 0 { "OK" } else { "FAIL" });
+                return ret2 != 0;
+            }
+            return false;
+        }
 
-    for cam in &cams {
-        if cam.handle.is_null() {
-            println!("Холбоот байсангүй — дахин холбож байна ({})", cam.ip);
-            needs_reconnect = true;
+        ret != 0
+    }
+
+    fn reconnect_single(&self, ip: &str) {
+        let sdk = match DahuaSdk::load() { Ok(s) => s, Err(_) => return };
+        let password = {
+            self.cam_cfg.iter()
+                .find(|c| c.ip == ip)
+                .map(|c| c.password.clone())
+                .unwrap_or_default()
+        };
+
+        println!("Дахин холбогдож байна: {ip}");
+
+        // Хуучин handle logout хийх
+        if let Some(old_handle) = self.handle_for_ip(ip) {
+            unsafe { let _ = (sdk.logout)(old_handle); }
+        }
+
+        let handle = Self::connect_with_retry_inner(sdk, ip, &password, &self.sdk_cfg);
+        if !handle.is_null() {
+            // handle_map шинэчлэх
+            self.handle_map.lock().unwrap().insert(ip.to_string(), handle);
+
+            // cameras list шинэчлэх
+            let mut cams = self.cameras.lock().unwrap();
+            if let Some(cam) = cams.iter_mut().find(|c| c.ip == ip) {
+                cam.handle = handle;
+            } else {
+                cams.push(CameraState {
+                    handle,
+                    ip:       ip.to_string(),
+                    password: password.clone(),
+                });
+            }
+
+            println!("Дахин амжилттай холбогдлоо: {ip}");
         } else {
-            println!("Холбоот байна ({})", cam.ip);
+            error!("Дахин холбогдоход амжилтгүй: {ip}");
         }
     }
 
-    if needs_reconnect {
-        self.reconnect_all();
+    pub fn heartbeat(&self) {
+        let ips_to_check: Vec<(String, HANDLE)> = {
+            let cams = self.cameras.lock().unwrap();
+            cams.iter().map(|c| (c.ip.clone(), c.handle)).collect()
+        };
+
+        let sdk_port = self.sdk_cfg.port;
+
+        for (ip, handle) in ips_to_check {
+            if handle.is_null() {
+                println!("Камер тасарсан ({ip}) — дахин холбогдож байна");
+                self.reconnect_single(&ip);
+                continue;
+            }
+
+            // Real TCP connectivity check — a non-null handle can still be stale
+            let addr = format!("{ip}:{sdk_port}");
+            let reachable = match addr.parse::<std::net::SocketAddr>() {
+                Ok(sock_addr) => std::net::TcpStream::connect_timeout(
+                    &sock_addr,
+                    std::time::Duration::from_secs(3),
+                ).is_ok(),
+                Err(_) => {
+                    warn!("Буруу хаяг: {addr}");
+                    false
+                }
+            };
+
+            if reachable {
+                println!("Холбоот байна ({ip})");
+            } else {
+                println!("Камер хүрэхгүй байна ({ip}) — дахин холбогдож байна");
+                self.reconnect_single(&ip);
+            }
+        }
     }
-}
 
     pub fn reconnect_all(&self) {
         println!("Бүх камерыг дахин холбож байна...");

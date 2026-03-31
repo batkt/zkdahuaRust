@@ -1,7 +1,7 @@
     [server]
     url          = "https://turees.zevtabs.mn/api/zogsoolSdkService"
-    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2YyZjAyN2ZiYzc4OGY4NWU1MGI5MiIsIm5lciI6ItCh0LDQvNC80LAg0L_RgNC-INGB0L7Qu9GM0Y7RiNC9INGF0YXQuiIsImJhaWd1dWxsYWdpaW5JZCI6IjY1Y2YyZjAyN2ZiYzc4OGY4NWU1MGI5MCIsImlhdCI6MTc3NDU5OTUxOH0.MPqX8GO4d5FC5Q9OduZiSSKlwkgaKEHCDXx0yi9Sbuk"
-    barilgiinId  = "65cf2f927fbc788f85e5552e"
+    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGYzNDM3YjQxYTQ3ODE5NWRkM2Q0ZSIsIm5lciI6ItCRLtCR0Y_QvNCx0LDRhtC-0LPRgiIsImJhaWd1dWxsYWdpaW5JZCI6IjY3MGYzNDM3YjQxYTQ3ODE5NWRkM2Q0YiIsImlhdCI6MTc3NDI1Mzg2MX0.BiJsa9Q9lqorj5E6u3Cb7zyiS_pmnV81CWhFGel9LtI"
+    barilgiinId  = "670f3437b41a478195dd3d4c"
     timeout_secs = 30
     retry_count  = 3
 
@@ -11,20 +11,18 @@
     connect_timeout_ms      = 5000
     max_connect_retries     = 5
     port                    = 37777
-    org_name = "Сакура"
+    org_name = "Нийслэл худалдааны төв"
     company_name = "ParkEase"
 
     [[cameras]]
-    ip       = "192.168.1.110"
+    ip       = "172.16.18.119"
     password = "Admin123"
-    http_port = 443
+    http_port = 80
     gate = "entrance"
-    sambar_type = "sambar_ognootoi" 
+    sambar_type = "sambar"
     [[cameras]]
-    ip       = "192.168.1.108"
+    ip       = "172.16.18.120"
     password = "Admin123"
-    http_port = 443
-    gate = "entrance"
-    sambar_type = "sambar_ognootoi" 
-   
-    
+    http_port = 80
+    gate = "exit"
+    sambar_type = "sambar"

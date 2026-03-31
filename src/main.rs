@@ -266,7 +266,18 @@ fn install_service() {
     match manager.create_service(&info, ServiceAccess::CHANGE_CONFIG) {
         Ok(svc) => {
             svc.set_description(SERVICE_DESC).ok();
+
+            // Configure auto-restart on failure: restart after 5s, 10s, 30s; reset counter after 60s
+            let _ = std::process::Command::new("sc")
+                .args([
+                    "failure", SERVICE_NAME,
+                    "reset=", "60",
+                    "actions=", "restart/5000/restart/10000/restart/30000",
+                ])
+                .output();
+
             println!("✓ Service '{SERVICE_NAME}' installed.");
+            println!("  Auto-restart on failure: 5s / 10s / 30s");
             println!("  Start: net start {SERVICE_NAME}");
         }
         Err(e) => { eprintln!("✗ Install failed: {e}"); std::process::exit(1); }
