@@ -3,9 +3,11 @@ use std::path::PathBuf;
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct Config {
-    pub server:  ServerConfig,
-    pub sdk:     SdkConfig,
-    pub cameras: Vec<CameraEntry>,
+    pub server:     ServerConfig,
+    pub sdk:        SdkConfig,
+    pub cameras:    Vec<CameraEntry>,
+    #[serde(default)]
+    pub sambar_only: bool,
 }
 
 #[derive(Debug, Deserialize, Clone)]

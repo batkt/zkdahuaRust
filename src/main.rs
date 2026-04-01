@@ -137,6 +137,19 @@ async fn run_app(cfg: Config) -> anyhow::Result<()> {
         );
     }
 
+    if cfg.sambar_only {
+        info!("sambar_only mode — skipping SDK/camera, running API only");
+
+        // Still need CameraManager for password/port/is_entrance lookups in sambar endpoints
+        let (plate_tx, _plate_rx) = mpsc::channel::<camera_manager::PlateEvent>(1);
+        let manager = CameraManager::new(&cfg, plate_tx);
+        CAMERA_MANAGER.set(manager)
+            .map_err(|_| anyhow::anyhow!("CameraManager already initialized"))?;
+
+        api::run_api_server(5000).await;
+        return Ok(());
+    }
+
     // 1. Plate event channel
     let (plate_tx, mut plate_rx) = mpsc::channel::<camera_manager::PlateEvent>(128);
 
@@ -150,10 +163,10 @@ async fn run_app(cfg: Config) -> anyhow::Result<()> {
 
     // 4. Connect cameras (blocking)
     tokio::task::spawn_blocking(move || {
-    if let Err(e) = CAMERA_MANAGER.get().unwrap().startup_and_connect() {
-        error!("SDK startup failed: {e}");
-    }
-});
+        if let Err(e) = CAMERA_MANAGER.get().unwrap().startup_and_connect() {
+            error!("SDK startup failed: {e}");
+        }
+    });
 
     // 5. Start HTTP plate listeners for each camera
     for cam in &cfg.cameras {
