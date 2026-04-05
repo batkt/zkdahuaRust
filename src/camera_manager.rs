@@ -206,12 +206,14 @@ impl CameraManager {
             )
         };
         let err = unsafe { (sdk.get_last_error)() };
-        println!("Хаалга онгойлгохоос ирж буй хариу: {} ({ip}) err={err:#x}",
-            if ret != 0 { "OK" } else { "FAIL" });
+        if ret != 0 {
+            log::info!("GATE OK    | ip={ip}");
+        } else {
+            log::error!("GATE FAIL  | ip={ip} err={err:#x} — reconnecting");
+        }
 
         // Handle хуучирсан бол дахин холбогдоно
         if ret == 0 {
-            warn!("open_gate FAIL — дахин холбогдож байна: {ip}");
             self.reconnect_single(ip);
 
             // Дахин оролдоно
@@ -226,9 +228,14 @@ impl CameraManager {
                         5000,
                     )
                 };
-                println!("Дахин оролдлого: {} ({ip})", if ret2 != 0 { "OK" } else { "FAIL" });
+                if ret2 != 0 {
+                    log::info!("GATE RETRY OK   | ip={ip}");
+                } else {
+                    log::error!("GATE RETRY FAIL | ip={ip}");
+                }
                 return ret2 != 0;
             }
+            log::error!("GATE RETRY FAIL | ip={ip} — no handle after reconnect");
             return false;
         }
 

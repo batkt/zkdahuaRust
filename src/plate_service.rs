@@ -37,9 +37,10 @@ impl PlateService {
             barilgiin_id:   &self.cfg.barilgiin_id,
         };
 
+        log::info!("PLATE SEND | plate={} camera={}", event.plate, event.camera_ip);
         match self.send_with_retry(&payload).await {
-            Ok(_)  => println!("Plate {} амжилттай илгээлээ", event.plate),
-            Err(e) => error!("Server алдаа plate {}: {e}", event.plate),
+            Ok(_)  => log::info!("PLATE OK   | plate={} camera={}", event.plate, event.camera_ip),
+            Err(e) => log::error!("PLATE FAIL | plate={} camera={} err={e}", event.plate, event.camera_ip),
         }
     }
 
@@ -53,10 +54,15 @@ impl PlateService {
                 Ok(_)  => return Ok(()),
                 Err(e) if attempt < max => {
                     let delay = 2_u64.pow(attempt + 1);
-                    warn!("Оролдлого {}/{max} амжилтгүй: {e}. {delay}s хүлээнэ", attempt + 1);
+                    log::error!("PLATE RETRY | attempt={}/{max} plate={} err={e} retry_in={delay}s",
+                        attempt + 1, payload.mashiniiDugaar);
                     sleep(Duration::from_secs(delay)).await;
                 }
-                Err(e) => return Err(e),
+                Err(e) => {
+                    log::error!("PLATE GIVE UP | plate={} all {max} attempts failed err={e}",
+                        payload.mashiniiDugaar);
+                    return Err(e);
+                }
             }
         }
         unreachable!()

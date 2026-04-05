@@ -303,5 +303,27 @@ fn uninstall_service() {
 }
 
 fn init_logging(level: LevelFilter) {
-    env_logger::Builder::new().filter_level(level).init();
+    let exe_dir = std::env::current_exe()
+        .ok()
+        .and_then(|p| p.parent().map(|d| d.to_path_buf()))
+        .unwrap_or_else(|| std::path::PathBuf::from("."));
+
+    let log_path = exe_dir.join("service.log");
+
+    fern::Dispatch::new()
+        .format(|out, message, record| {
+            out.finish(format_args!(
+                "[{}] [{}] {}",
+                chrono::Local::now().format("%Y-%m-%d %H:%M:%S"),
+                record.level(),
+                message
+            ))
+        })
+        .level(level)
+        .chain(std::io::stdout())
+        .chain(fern::log_file(&log_path).expect("Cannot open log file"))
+        .apply()
+        .expect("Logger init failed");
+
+    log::info!("Log file: {}", log_path.display());
 }
