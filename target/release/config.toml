@@ -1,7 +1,7 @@
     [server]
     url          = "https://turees.zevtabs.mn/api/zogsoolSdkService"
-    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NGU0NzQ2ZDYwMzQyN2Y4ZDY2NGJiNSIsIm5lciI6IuKAnNCm0K3Qk9Cm4oCdINCl0KXQmiIsImJhaWd1dWxsYWdpaW5JZCI6IjY5NGU0NzQ2ZDYwMzQyN2Y4ZDY2NGJiMSIsImlhdCI6MTc3NTQ4Njg0MH0.PaaoMDDWyV6UBwS8GF3KO---WN05WKeHlTLXCIhI0LY"
-    barilgiinId  = "694e4746d603427f8d664bb2"
+    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzEyMzQ5ZGNmYmU2MmY3MWRiNDRhYyIsIm5lciI6ItCd0Y_QvNCx0LDRj9GAIiwiYmFpZ3V1bGxhZ2lpbklkIjoiNjkzMTIzNDlkY2ZiZTYyZjcxZGI0NGE4IiwiaWF0IjoxNzc0NTgwNTY2fQ.ltUD6awVVpYTKuPOqgk6pNs7U5ZaqdvJOZvF1oj3ODs"
+    barilgiinId  = "69312349dcfbe62f71db44a9"
     timeout_secs = 30
     retry_count  = 3
 
@@ -11,18 +11,30 @@
     connect_timeout_ms      = 5000
     max_connect_retries     = 5
     port                    = 37777
-    org_name = "Хүүхдийн зуу (Хаан банк)"
+    org_name = "Хархорум"
     company_name = "ParkEase"
 
     [[cameras]]
-    ip       = "192.168.8.120"
-    password = "Admin123"
-    http_port = 80
+    ip       = "172.16.19.134"
+    password = "admin123"
+    http_port = 443
     gate = "entrance"
+    sambar_type = "sambar" 
+    [[cameras]]
+    ip       = "172.16.19.130"
+    password = "admin123"
+    http_port = 443
+    gate = "entrance"
+    sambar_type = "sambar" 
+    [[cameras]]
+    ip       = "172.16.19.131"
+    password = "admin123"
+    http_port = 443
+    gate = "exit"
     sambar_type = "sambar"
     [[cameras]]
-    ip       = "192.168.8.121"
-    password = "Admin123"
-    http_port = 80
+    ip       = "172.16.19.132"
+    password = "admin123"
+    http_port = 443
     gate = "exit"
     sambar_type = "sambar"
