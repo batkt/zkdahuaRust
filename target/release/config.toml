@@ -1,7 +1,7 @@
     [server]
     url          = "https://turees.zevtabs.mn/api/zogsoolSdkService"
-    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5Y2I4OTQzN2I2YWMyOTk5NDU3NmY1YiIsIm5lciI6ItCT0JDQndCi06jQnNOo0KAg0JHQr9Cc0JHQkNCU0J7QoNCWIiwiYmFpZ3V1bGxhZ2lpbklkIjoiNjljYjg5NDM3YjZhYzI5OTk0NTc2ZjU4IiwiaWF0IjoxNzc1Mjc5NDM2fQ.jI4eM-kfJ5EkNvKezOp9N2nUITu2IENrOggXNDa7jTA"
-    barilgiinId  = "69cb89437b6ac29994576f59"
+    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzEyMzQ5ZGNmYmU2MmY3MWRiNDRhYyIsIm5lciI6ItCd0Y_QvNCx0LDRj9GAIiwiYmFpZ3V1bGxhZ2lpbklkIjoiNjkzMTIzNDlkY2ZiZTYyZjcxZGI0NGE4IiwiaWF0IjoxNzc0NTgwNTY2fQ.ltUD6awVVpYTKuPOqgk6pNs7U5ZaqdvJOZvF1oj3ODs"
+    barilgiinId  = "69312349dcfbe62f71db44a9"
     timeout_secs = 30
     retry_count  = 3
 
@@ -11,39 +11,20 @@
     connect_timeout_ms      = 5000
     max_connect_retries     = 5
     port                    = 37777
-    org_name = "Food city"
+    org_name = "Хархорум"
     company_name = "ParkEase"
 
     [[cameras]]
-    ip       = "192.168.2.75"
+    ip       = "192.168.1.108"
     password = "admin123"
     http_port = 80
     gate = "entrance"
-    sambar_type = "sambar"
+    sambar_type = "sambar" 
     [[cameras]]
-    ip       = "192.168.2.234"
+    ip       = "192.168.1.109"
     password = "admin123"
     http_port = 80
     gate = "entrance"
-    sambar_type = "sambar"
-     [[cameras]]
-    ip       = "192.168.2.76"
-    password = "admin123"
-    http_port = 80
-    gate = "exit"
-    sambar_type = "sambar"
-
-    [[cameras]]
-    ip       = "192.168.2.236"
-    password = "food2345"
-    http_port = 80
-    gate = "exit"
-    sambar_type = "sambar"
-
-    [[cameras]]
-    ip       = "192.168.2.237"
-    password = "admin123"
-    http_port = 80
-    gate = "exit"
-    sambar_type = "sambar"
+    sambar_type = "sambar" 
+   
     
