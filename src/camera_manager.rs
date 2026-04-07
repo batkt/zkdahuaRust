@@ -93,19 +93,6 @@ impl CameraManager {
             .and_then(|c| c.http_port)
     }
 
-    pub fn sambar_ips_for(&self, ip: &str) -> Vec<String> {
-        let group = self.cam_cfg.iter()
-            .find(|c| c.ip == ip)
-            .and_then(|c| c.sambar_group.clone());
-
-        match group {
-            Some(g) => self.cam_cfg.iter()
-                .filter(|c| c.sambar_group.as_deref() == Some(&g))
-                .map(|c| c.ip.clone())
-                .collect(),
-            None => vec![ip.to_string()],
-        }
-    }
 
     pub fn sambar_type_for_ip(&self, ip: &str) -> String {
         self.cam_cfg

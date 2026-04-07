@@ -38,7 +38,6 @@ pub struct CameraEntry {
     pub http_port: Option<u16>,
     pub gate:      Option<String>,
     pub sambar_type: Option<String>,
-    pub sambar_group: Option<String>,
 }
 
 impl Config {
