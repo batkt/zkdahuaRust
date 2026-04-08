@@ -1,7 +1,7 @@
     [server]
     url          = "https://turees.zevtabs.mn/api/zogsoolSdkService"
-    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzEyMzQ5ZGNmYmU2MmY3MWRiNDRhYyIsIm5lciI6ItCd0Y_QvNCx0LDRj9GAIiwiYmFpZ3V1bGxhZ2lpbklkIjoiNjkzMTIzNDlkY2ZiZTYyZjcxZGI0NGE4IiwiaWF0IjoxNzc0NTgwNTY2fQ.ltUD6awVVpYTKuPOqgk6pNs7U5ZaqdvJOZvF1oj3ODs"
-    barilgiinId  = "69312349dcfbe62f71db44a9"
+    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MWIzZGM4MmE0NzI4ZTliYmMxYzBiNCIsIm5lciI6ItCxIiwiYmFpZ3V1bGxhZ2lpbklkIjoiNjcxNWVmMmNhNWNlZmIzZTU0NTA1NDI4Iiwic2FsYmFydXVkIjpbeyJzYWxiYXJpaW5JZCI6IjY3MTVlZjJjYTVjZWZiM2U1NDUwNTQyOSIsImR1dXNha2hPZ25vbyI6IjIwMjYtMDUtMDFUMTU6NTk6NTkuMDAwWiJ9LHsic2FsYmFyaWluSWQiOiI2OWJiZDdjY2FjZDVkYWZhNDY1OTNkYzYiLCJkdXVzYWtoT2dub28iOiIyMDI2LTA0LTE1VDE1OjU5OjU5LjAwMFoifV0sImR1dXNha2hPZ25vbyI6IjIwMjYtMDUtMDFUMTU6NTk6NTkuMDAwWiIsImlhdCI6MTc3NTUzMzE2MiwiZXhwIjoxNzc1NTc2MzYyfQ.LU5LMZpNqBI7xkwjCZheY9kJ2zOrumS8T_OfdzKMbRI"
+    barilgiinId  = "6715ef2ca5cefb3e54505429"
     timeout_secs = 30
     retry_count  = 3
 
@@ -11,20 +11,32 @@
     connect_timeout_ms      = 5000
     max_connect_retries     = 5
     port                    = 37777
-    org_name = "Хархорум"
+    org_name = "Хос даль"
     company_name = "ParkEase"
 
     [[cameras]]
-    ip       = "192.168.1.108"
+    ip       = "192.168.1.91"
     password = "admin123"
-    http_port = 80
+    http_port = 443
     gate = "entrance"
     sambar_type = "sambar" 
     [[cameras]]
-    ip       = "192.168.1.109"
+    ip       = "192.168.1.93"
     password = "admin123"
-    http_port = 80
+    http_port = 443
     gate = "entrance"
+    sambar_type = "sambar" 
+    [[cameras]]
+    ip       = "192.168.1.94"
+    password = "admin123"
+    http_port = 443
+    gate = "entrance"
+    sambar_type = "sambar" 
+    [[cameras]]
+    ip       = "192.168.1.90"
+    password = "admin123"
+    http_port = 443
+    gate = "exit"
     sambar_type = "sambar" 
    
     

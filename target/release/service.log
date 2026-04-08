@@ -1,0 +1,19 @@
+[2026-04-08 10:38:09] [INFO] Log file: D:\zolbayar\dahua-service\target\release\service.log
+[2026-04-08 10:38:09] [INFO] === Dahua Parking Service starting ===
+[2026-04-08 10:38:09] [INFO] Plate event processor started
+[2026-04-08 10:38:09] [INFO] API server listening on 0.0.0.0:5000
+[2026-04-08 10:38:09] [DEBUG] starting new connection: https://192.168.1.90/
+[2026-04-08 10:38:09] [DEBUG] starting new connection: https://192.168.1.91/
+[2026-04-08 10:38:09] [DEBUG] starting new connection: https://192.168.1.94/
+[2026-04-08 10:38:09] [DEBUG] starting new connection: https://192.168.1.93/
+[2026-04-08 10:38:09] [DEBUG] connecting to 192.168.1.90:443
+[2026-04-08 10:38:09] [DEBUG] connecting to 192.168.1.91:443
+[2026-04-08 10:38:09] [DEBUG] connecting to 192.168.1.94:443
+[2026-04-08 10:38:09] [DEBUG] connecting to 192.168.1.93:443
+[2026-04-08 10:38:09] [INFO] SDK | initialize хийж байна...
+[2026-04-08 10:38:09] [INFO] SDK | амжилттай аслаа
+[2026-04-08 10:38:09] [INFO] SDK | camera холбож байна: 192.168.1.91
+[2026-04-08 10:38:17] [WARN] Холболт амжилтгүй 192.168.1.91 attempt 1: error 0x8000006b
+[2026-04-08 10:38:18] [DEBUG] starting new connection: http://192.168.1.232/
+[2026-04-08 10:38:18] [DEBUG] connecting to 192.168.1.232:80
+[2026-04-08 10:38:25] [WARN] Холболт амжилтгүй 192.168.1.91 attempt 2: error 0x8000006b
