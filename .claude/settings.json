@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls target/release/*.exe)",
+      "Bash(ls dahua/target/release/*.exe)",
+      "Bash(ls parking-service/target/i686-pc-windows-msvc/release/*.exe)",
+      "Bash(cp dahua/target/release/dahua-service.exe target/release/dahua-service.exe)",
+      "Bash(cp dahua/target/release/combined-launcher.exe target/release/combined-launcher.exe)",
+      "Bash(cp parking-service/target/i686-pc-windows-msvc/release/parking-service.exe target/release/parking-service.exe)",
+      "Bash(taskkill /F /IM dahua-service.exe /IM parking-service.exe /IM combined-launcher.exe)",
+      "Bash(taskkill /F /IM dahua-service.exe)",
+      "Bash(taskkill /F /IM parking-service.exe)",
+      "Bash(taskkill /F /IM combined-launcher.exe)",
+      "Bash(cmd /c \"taskkill /F /IM dahua-service.exe & taskkill /F /IM parking-service.exe & taskkill /F /IM combined-launcher.exe\")",
+      "Bash(cmd /c \"taskkill /F /IM dahua-service.exe\")",
+      "Bash(cmd /c \"taskkill /F /IM dahua-service.exe 2>&1 && echo killed_dahua || echo not_running_dahua\")",
+      "Bash(powershell -Command \"Stop-Process -Name dahua-service -Force -ErrorAction SilentlyContinue; Stop-Process -Name parking-service -Force -ErrorAction SilentlyContinue; Stop-Process -Name combined-launcher -Force -ErrorAction SilentlyContinue; Start-Sleep 1; Write-Host done\")",
+      "Bash(powershell -Command \"Stop-Process -Name dahua-service -Force -ErrorAction SilentlyContinue; Stop-Process -Name parking-service -Force -ErrorAction SilentlyContinue; Stop-Process -Name combined-launcher -Force -ErrorAction SilentlyContinue; Start-Sleep 1; Write-Host stopped\")",
+      "Bash(cp __TRACKED_VAR__/self.pem target/release/self.pem)",
+      "Bash(cp -r __TRACKED_VAR__/lpr-Resource target/release/lpr-Resource)",
+      "Bash(powershell -Command ' *)"
+    ]
+  }
+}

@@ -1,0 +1,278 @@
+[2026-04-16 14:44:31.187][24028]AlprSDK_Startup(607): Info:hNotifyWnd is NULL.
+[2026-04-16 14:44:31.187][24028]VideoSDK::Initialize(42): Ju long video sdk init success.
+[2026-04-16 14:44:31.187][24028]EZVideoSDK::Initialize(278): Info:SDK Run Path=D:\zolbayar\dahua-service\target\release--
+[2026-04-16 14:44:31.187][24028]EZVideoSDK::Initialize(281): SDK Load Path=D:\zolbayar\dahua-service\target\release--
+[2026-04-16 14:44:31.250][24028]EZVideoSDK::Initialize(345): Init ok,KeyPath=D:\zolbayar\dahua-service\target\release\lpr-Resource\self.pem--
+[2026-04-16 14:44:31.250][24028]AlprSDK_Startup(731): ALPR_SDK_VER=1.0.3.37,MAX_ALPRCLIENT_NUM=1024,sizeof(g_pAlprClient)=4096,sizeof(AlprHandle)=9576--
+[2026-04-16 14:44:31.265][19780]AlprSDK_ClearRecogAllInfoTask(3335): Err:invalid nHandleID=0 failed
+[2026-04-16 14:44:31.265][19780]AlprSDK_DisConnectDev(1664): Err:invalid nHandleID=0 failed
+[2026-04-16 14:44:31.265][19780]AlprSDK_UnInitHandle(1290): Err:invalid nHandleID=0 failed
+[2026-04-16 14:44:31.359][19780]AlprSDK_InitHandle(1157): nHandleID=0,hVideoWnd=0x0
+[2026-04-16 14:44:31.359][19780]AlprSDK_InitHandle(1189): -------g_UseHandleCount=1,nHandleID=0,nIdx=0--------
+[2026-04-16 14:44:31.359][19780]AlprSDK_InitHandle(1223): ----------nHandleID=0,nIdx=0----------
+[2026-04-16 14:44:31.359][19780]AlprSDK_CarInfoRecogInit(117): sizeof(Classifier)=108---
+[2026-04-16 14:44:31.359][19780]AlprSDK_ConnectDev(1537): Info:nHandleID=0,lprDevType=2,u16Port=443
+[2026-04-16 14:44:31.359][19780]EZVideoSDK::Init(614): Info:nPlayerID=0,m_hVideoWnd(null),hVideoWnd(null).
+[2026-04-16 14:44:31.359][19780]EZVideoSDK::Init(643): 111---m_dwPort=0.
+[2026-04-16 14:44:31.375][19780]EZVideoSDK::Init(725): Info:init success,nPlayerID=0.
+[2026-04-16 14:44:31.375][1764]AlprClient::Entry(945): dev=,m_nHandleID=0(tid=1764),start thread
+[2026-04-16 14:44:32.171][19780]AlprSDK_ConnectDev(1608): Info:---IP=192.168.1.25,nHandleID:0,timeoutMs=5500--
+[2026-04-16 14:44:32.171][1764]AlprClient::Reconnect(762): try connect ip=192.168.1.25,port=37080,sendBufSz=98304,recvBufSz=2097152--
+[2026-04-16 14:44:32.203][1764]AlprClient::Reconnect(805): ---------ReGetDeviceFunList start-------
+[2026-04-16 14:44:32.203][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetFunList, len = 12.
+[2026-04-16 14:44:32.703][1764]AlprClient::Reconnect(808): ---------ReGetDeviceFunList end-------
+[2026-04-16 14:44:32.703][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_SetAPIClientType, len = 16.
+[2026-04-16 14:44:32.703][1764]AlprClient::SetAPIClientType(7288): INFO:------SetAPIClientType sucess(m_eAPIClientType=0)------
+[2026-04-16 14:44:33.906][1764]AlprClient::Reconnect(812): ---------SetAPIClientType nRet=0-------
+[2026-04-16 14:44:33.906][1764]AlprClient::SendDevStatus(5515): m_nHandleID:0,aux1IP:255.255.255.255,aux1Status:-1,aux2IP:255.255.255.255,aux2Status:-1,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:44:33.906][1764]AlprClient::Entry(1090): Info: dev 192.168.1.25 m_bDisconnect=0,fd=27612
+[2026-04-16 14:44:33.906][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_RespFunList,type=1276,len=267
+[2026-04-16 14:44:33.906][1764]AlprClient::Parse(1719): sizeof(m_devSupportFunList):256,len:255, 111011101101010111011000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[2026-04-16 14:44:33.906][1764]AlprClient::Parse(1725): m_nHandleID:0, ip_addr:192.168.1.25, m_devSupportFunList:111011101101010111011000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[2026-04-16 14:44:33.906][1764]AlprClient::SetSDKFunList(8370): szSDKkSupportFunList:1,len:1
+[2026-04-16 14:44:33.906][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_SetSDKFunlist, len = 13.
+[2026-04-16 14:44:33.906][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetBaseParam, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetROIEx, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetSystemConfig, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetRS485Config, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetDevSN, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetDevVerInfo, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetGateConfig, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetAlprConfig, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetAppAlprConfig, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetVirtualCoil, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetOfflineParam, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::GetCarTeamSignal(7496): -------M_GetCarTeamModeReq--Send Req
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetTeamModeReq, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetFtpClientCfgReq, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetWebServiceConfig, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetHttpClientCfgReq, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetLedScreenConfig, len = 12.
+[2026-04-16 14:44:33.921][1764]AlprClient::GetPlateListExt(7686): ========Plate Type:0,flag:0,len:0
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetPlateListExtReq, len = 16.
+[2026-04-16 14:44:33.921][1764]AlprClient::GetPlateListExt(7686): ========Plate Type:1,flag:0,len:0
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetPlateListExtReq, len = 16.
+[2026-04-16 14:44:33.921][1764]AlprClient::GetPlateListExt(7686): ========Plate Type:2,flag:0,len:0
+[2026-04-16 14:44:33.921][1764]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetPlateListExtReq, len = 16.
+[2026-04-16 14:44:33.921][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetBaseParam,type=1238,len=62
+[2026-04-16 14:44:33.921][1764]AlprClient::Parse(1580): Info:get from device,nCountryCode=977
+[2026-04-16 14:44:33.937][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetROIEx,type=1228,len=44
+[2026-04-16 14:44:33.937][1764]AlprClient::HandleROIEx(4396): Debug:m_nHandleID=0,m_RoiEx(50,175),(1230,175),(1230,690),(50,690)--
+[2026-04-16 14:44:33.937][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetSystemConfig,type=1205,len=558
+[2026-04-16 14:44:33.937][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetRS485Config,type=1209,len=116
+[2026-04-16 14:44:33.937][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetDevSN,type=1235,len=976
+[2026-04-16 14:44:33.937][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetDevVerInfo,type=1236,len=111
+[2026-04-16 14:44:33.937][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetGateConfig,type=1211,len=28
+[2026-04-16 14:44:33.953][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetAlprConfig,type=1207,len=28
+[2026-04-16 14:44:33.953][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetAppAlprConfig,type=1315,len=44
+[2026-04-16 14:44:33.953][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetVirtualCoil,type=1231,len=44
+[2026-04-16 14:44:33.953][1764]AlprClient::HandleVirtualCoil(4426): Debug:m_nHandleID=0,m_VirtualCoil(50,346),(1230,346),(1230,356),(50,356)--
+[2026-04-16 14:44:33.953][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetOfflineParam,type=1245,len=168
+[2026-04-16 14:44:33.968][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetCarTeamModeRes,type=1279,len=16
+[2026-04-16 14:44:33.968][1764]AlprClient::Parse(1779): -------Receive--carTeamMode=0
+[2026-04-16 14:44:33.968][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetFtpClientCfgRes,type=1297,len=336
+[2026-04-16 14:44:33.968][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetWebServiceConfig,type=1325,len=852
+[2026-04-16 14:44:33.968][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetHttpClientCfgRes,type=1301,len=544
+[2026-04-16 14:44:33.968][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetLedScreenConfig,type=1352,len=148
+[2026-04-16 14:44:33.984][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetPlateListRes,type=1223,len=148
+[2026-04-16 14:44:33.984][1764]AlprClient::HandleGetPlateListExtRes(7979): GetPlateListExtRes OK, type = 0, count = 1.
+[2026-04-16 14:44:33.984][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetPlateListRes,type=1223,len=20
+[2026-04-16 14:44:33.984][1764]AlprClient::HandleGetPlateListExtRes(7979): GetPlateListExtRes OK, type = 1, count = 0.
+[2026-04-16 14:44:33.984][1764]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetPlateListRes,type=1223,len=20
+[2026-04-16 14:44:33.984][1764]AlprClient::HandleGetPlateListExtRes(7979): GetPlateListExtRes OK, type = 2, count = 0.
+[2026-04-16 14:44:33.203][19780]AlprClient::Reconnect(712): Info:--connect success,addr=192.168.1.25,port:37080,m_nHandleID=0.
+[2026-04-16 14:44:33.203][19780]AlprSDK_ConnectDev(1610): Info:--nHandleID=0,retVal=0.
+[2026-04-16 14:44:33.203][19780]AlprSDK_StartVideo(1826): nHandleID=0
+[2026-04-16 14:44:34.828][19780]EZVideoSDK::StartVideo(2172): Login Succ,IP=192.168.1.25,u16Port=443,szUser=admin,hUserId=18E89008--
+[2026-04-16 14:44:34.062][19780]EZVideoSDK::StartVideo(2225): m_nVideoWidth=0,m_nVideoHeight=0--
+[2026-04-16 14:44:34.062][19780]EZVideoSDK::StartVideo(2234): IP=192.168.1.25,m_hVideoWnd=0x0,hRealPlay=18EBE800--
+[2026-04-16 14:44:34.125][19780]EZVideoSDK::StartVideo(2237): m_nVideoWidth=0,m_nVideoHeight=0--
+[2026-04-16 14:44:34.625][25432]funStreamDataCallBack(1744): szIP=192.168.1.25,m_nVideoWidth=720,m_nVideoHeight=576--
+[2026-04-16 14:44:42.218][25432]funStreamDataCallBack(1799): I8_MP4Play_InputData failed dwPort=0,count = 3, dwBufferSize=3456, uiFrameType=19--
+[2026-04-16 14:44:42.312][1764]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:44:52.343][1764]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:45:02.359][1764]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:45:12.359][1764]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:45:22.421][1764]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:45:32.437][1764]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:45:42.218][25432]funStreamDataCallBack(1799): I8_MP4Play_InputData failed dwPort=0,count = 2, dwBufferSize=3935, uiFrameType=19--
+[2026-04-16 14:45:42.453][1764]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:45:42.453][1764]AlprClient::SendDevStatus(5526): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:45:52.468][1764]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:46:02.562][1764]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:46:12.609][1764]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:46:22.625][1764]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:46:32.656][1764]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:46:42.218][25432]funStreamDataCallBack(1799): I8_MP4Play_InputData failed dwPort=0,count = 3, dwBufferSize=4047, uiFrameType=19--
+[2026-04-16 14:46:42.671][1764]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:46:42.671][1764]AlprClient::SendDevStatus(5526): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:47:10.953][1764]Socket::Read(222): Err:recv theErr=32,length=3145728,m_s32FileDesc=27612--
+[2026-04-16 14:47:10.953][1764]AlprClient::DevCfgMsgHandler(1218): -----dev(192.168.1.25) disconnected,m_iDevConnStatus=-997,MSG_BUF_SIZE=3145728-------
+[2026-04-16 14:47:10.953][1764]AlprClient::SendDevStatus(5501): send a signal to send thread
+[2026-04-16 14:47:10.953][1764]AlprClient::SendDevStatus(5515): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:-997, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:47:31.312][8672]AlprSDK_DisConnectDev(1679): nHandleID=0
+[2026-04-16 14:47:36.312][8672]AlprSDK_DisConnectDev(1774): HandleID = 0 disconnect finish
+[2026-04-16 14:47:36.312][8672]AlprSDK_UnInitHandle(1305): start,nHandleID=0
+[2026-04-16 14:47:36.312][8672]AlprClient::Stop(132): start,m_nHandleID=0,m_bLiving=1--
+[2026-04-16 14:47:36.312][1764]AlprClient::Entry(1140): dev=192.168.1.25,m_nHandleID=0(1764),exit thread
+[2026-04-16 14:47:36.312][8672]EZVideoSDK::StopVideo(2627): Info:Video local stopping start,hRealPlay=18EBE800--
+[2026-04-16 14:47:36.421][8672]EZVideoSDK::StopVideo(2633): I8H_SDK_StopRealPlay finish!
+[2026-04-16 14:47:36.421][8672]EZVideoSDK::StopVideo(2704): I8H_SDK_Logout finish,hUserId=18E89008!
+[2026-04-16 14:47:36.656][8672]AlprSDK_UnInitHandle(1336): end nHandleID=0
+[2026-04-16 14:47:36.656][8672]AlprSDK_ClearRecogAllInfoTask(3335): Err:invalid nHandleID=0 failed
+[2026-04-16 14:47:37.859][21484]AlprSDK_ClearRecogAllInfoTask(3335): Err:invalid nHandleID=0 failed
+[2026-04-16 14:47:37.859][21484]AlprSDK_DisConnectDev(1664): Err:invalid nHandleID=0 failed
+[2026-04-16 14:47:37.859][21484]AlprSDK_UnInitHandle(1290): Err:invalid nHandleID=0 failed
+[2026-04-16 14:47:37.968][21484]AlprSDK_InitHandle(1157): nHandleID=0,hVideoWnd=0x0
+[2026-04-16 14:47:37.968][21484]AlprSDK_InitHandle(1189): -------g_UseHandleCount=1,nHandleID=0,nIdx=0--------
+[2026-04-16 14:47:37.968][21484]AlprSDK_InitHandle(1223): ----------nHandleID=0,nIdx=0----------
+[2026-04-16 14:47:37.968][21484]AlprSDK_CarInfoRecogInit(117): sizeof(Classifier)=108---
+[2026-04-16 14:47:37.968][21484]AlprSDK_ConnectDev(1537): Info:nHandleID=0,lprDevType=2,u16Port=443
+[2026-04-16 14:47:37.968][21484]EZVideoSDK::Init(614): Info:nPlayerID=0,m_hVideoWnd(null),hVideoWnd(null).
+[2026-04-16 14:47:37.968][21484]EZVideoSDK::Init(643): 111---m_dwPort=0.
+[2026-04-16 14:47:37.968][21484]EZVideoSDK::Init(725): Info:init success,nPlayerID=0.
+[2026-04-16 14:47:37.968][14680]AlprClient::Entry(945): dev=,m_nHandleID=0(tid=14680),start thread
+[2026-04-16 14:47:37.000][21484]EZVideoSDK::TryLoginCamera(1963): I8H_SDK_Loginv3 Error,IP=192.168.1.25,u16Port=443,szUser=admin,nTimeoutMS=5500,errdesc=9--
+[2026-04-16 14:47:37.000][21484]AlprSDK_ConnectDev(1565): Err:--CannotConnect,nHandleID=0.
+[2026-04-16 14:47:38.015][21484]AlprSDK_DisConnectDev(1679): nHandleID=0
+[2026-04-16 14:47:38.015][21484]AlprClient::SendDevStatus(5501): send a signal to send thread
+[2026-04-16 14:47:38.015][21484]AlprClient::SendDevStatus(5515): m_nHandleID:0,aux1IP:255.255.255.255,aux1Status:-1,aux2IP:255.255.255.255,aux2Status:-1,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:-997, ip_addr:, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:47:43.015][21484]AlprSDK_DisConnectDev(1774): HandleID = 0 disconnect finish
+[2026-04-16 14:47:43.015][21484]AlprSDK_UnInitHandle(1305): start,nHandleID=0
+[2026-04-16 14:47:43.015][21484]AlprClient::Stop(132): start,m_nHandleID=0,m_bLiving=1--
+[2026-04-16 14:47:43.015][14680]AlprClient::Entry(1140): dev=,m_nHandleID=0(14680),exit thread
+[2026-04-16 14:47:43.109][21484]AlprSDK_UnInitHandle(1336): end nHandleID=0
+[2026-04-16 14:47:43.218][21484]AlprSDK_InitHandle(1157): nHandleID=0,hVideoWnd=0x0
+[2026-04-16 14:47:43.218][21484]AlprSDK_InitHandle(1189): -------g_UseHandleCount=1,nHandleID=0,nIdx=0--------
+[2026-04-16 14:47:43.218][21484]AlprSDK_InitHandle(1223): ----------nHandleID=0,nIdx=0----------
+[2026-04-16 14:47:43.218][21484]AlprSDK_CarInfoRecogInit(117): sizeof(Classifier)=108---
+[2026-04-16 14:47:43.234][21484]AlprSDK_ConnectDev(1537): Info:nHandleID=0,lprDevType=2,u16Port=443
+[2026-04-16 14:47:43.234][21484]EZVideoSDK::Init(614): Info:nPlayerID=0,m_hVideoWnd(null),hVideoWnd(null).
+[2026-04-16 14:47:43.234][21484]EZVideoSDK::Init(643): 111---m_dwPort=0.
+[2026-04-16 14:47:43.234][15252]AlprClient::Entry(945): dev=,m_nHandleID=0(tid=15252),start thread
+[2026-04-16 14:47:43.234][21484]EZVideoSDK::Init(725): Info:init success,nPlayerID=0.
+[2026-04-16 14:47:43.281][21484]EZVideoSDK::TryLoginCamera(1963): I8H_SDK_Loginv3 Error,IP=192.168.1.25,u16Port=443,szUser=admin,nTimeoutMS=6000,errdesc=9--
+[2026-04-16 14:47:43.281][21484]AlprSDK_ConnectDev(1565): Err:--CannotConnect,nHandleID=0.
+[2026-04-16 14:47:45.281][21484]AlprSDK_DisConnectDev(1679): nHandleID=0
+[2026-04-16 14:47:45.281][21484]AlprClient::SendDevStatus(5501): send a signal to send thread
+[2026-04-16 14:47:45.281][21484]AlprClient::SendDevStatus(5515): m_nHandleID:0,aux1IP:255.255.255.255,aux1Status:-1,aux2IP:255.255.255.255,aux2Status:-1,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:-997, ip_addr:, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:47:50.281][21484]AlprSDK_DisConnectDev(1774): HandleID = 0 disconnect finish
+[2026-04-16 14:47:50.281][21484]AlprSDK_UnInitHandle(1305): start,nHandleID=0
+[2026-04-16 14:47:50.281][21484]AlprClient::Stop(132): start,m_nHandleID=0,m_bLiving=1--
+[2026-04-16 14:47:50.281][15252]AlprClient::Entry(1140): dev=,m_nHandleID=0(15252),exit thread
+[2026-04-16 14:47:50.390][21484]AlprSDK_UnInitHandle(1336): end nHandleID=0
+[2026-04-16 14:47:50.484][21484]AlprSDK_InitHandle(1157): nHandleID=0,hVideoWnd=0x0
+[2026-04-16 14:47:50.484][21484]AlprSDK_InitHandle(1189): -------g_UseHandleCount=1,nHandleID=0,nIdx=0--------
+[2026-04-16 14:47:50.484][21484]AlprSDK_InitHandle(1223): ----------nHandleID=0,nIdx=0----------
+[2026-04-16 14:47:50.484][21484]AlprSDK_CarInfoRecogInit(117): sizeof(Classifier)=108---
+[2026-04-16 14:47:50.500][21484]AlprSDK_ConnectDev(1537): Info:nHandleID=0,lprDevType=2,u16Port=443
+[2026-04-16 14:47:50.500][21484]EZVideoSDK::Init(614): Info:nPlayerID=0,m_hVideoWnd(null),hVideoWnd(null).
+[2026-04-16 14:47:50.500][21484]EZVideoSDK::Init(643): 111---m_dwPort=0.
+[2026-04-16 14:47:50.500][21484]EZVideoSDK::Init(725): Info:init success,nPlayerID=0.
+[2026-04-16 14:47:50.515][13784]AlprClient::Entry(945): dev=,m_nHandleID=0(tid=13784),start thread
+[2026-04-16 14:47:50.546][21484]EZVideoSDK::TryLoginCamera(1963): I8H_SDK_Loginv3 Error,IP=192.168.1.25,u16Port=443,szUser=admin,nTimeoutMS=6500,errdesc=9--
+[2026-04-16 14:47:50.546][21484]AlprSDK_ConnectDev(1565): Err:--CannotConnect,nHandleID=0.
+[2026-04-16 14:47:53.546][21484]AlprSDK_DisConnectDev(1679): nHandleID=0
+[2026-04-16 14:47:53.546][21484]AlprClient::SendDevStatus(5501): send a signal to send thread
+[2026-04-16 14:47:53.546][21484]AlprClient::SendDevStatus(5515): m_nHandleID:0,aux1IP:255.255.255.255,aux1Status:-1,aux2IP:255.255.255.255,aux2Status:-1,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:-997, ip_addr:, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:47:58.546][21484]AlprSDK_DisConnectDev(1774): HandleID = 0 disconnect finish
+[2026-04-16 14:47:58.546][21484]AlprSDK_UnInitHandle(1305): start,nHandleID=0
+[2026-04-16 14:47:58.546][21484]AlprClient::Stop(132): start,m_nHandleID=0,m_bLiving=1--
+[2026-04-16 14:47:58.546][13784]AlprClient::Entry(1140): dev=,m_nHandleID=0(13784),exit thread
+[2026-04-16 14:47:58.640][21484]AlprSDK_UnInitHandle(1336): end nHandleID=0
+[2026-04-16 14:47:58.750][21484]AlprSDK_InitHandle(1157): nHandleID=0,hVideoWnd=0x0
+[2026-04-16 14:47:58.750][21484]AlprSDK_InitHandle(1189): -------g_UseHandleCount=1,nHandleID=0,nIdx=0--------
+[2026-04-16 14:47:58.750][21484]AlprSDK_InitHandle(1223): ----------nHandleID=0,nIdx=0----------
+[2026-04-16 14:47:58.750][21484]AlprSDK_CarInfoRecogInit(117): sizeof(Classifier)=108---
+[2026-04-16 14:47:58.750][21484]AlprSDK_ConnectDev(1537): Info:nHandleID=0,lprDevType=2,u16Port=443
+[2026-04-16 14:47:58.750][21484]EZVideoSDK::Init(614): Info:nPlayerID=0,m_hVideoWnd(null),hVideoWnd(null).
+[2026-04-16 14:47:58.750][21484]EZVideoSDK::Init(643): 111---m_dwPort=0.
+[2026-04-16 14:47:58.750][21484]EZVideoSDK::Init(725): Info:init success,nPlayerID=0.
+[2026-04-16 14:47:58.750][15600]AlprClient::Entry(945): dev=,m_nHandleID=0(tid=15600),start thread
+[2026-04-16 14:47:59.500][21484]AlprSDK_ConnectDev(1608): Info:---IP=192.168.1.25,nHandleID:0,timeoutMs=7000--
+[2026-04-16 14:47:59.500][15600]AlprClient::Reconnect(762): try connect ip=192.168.1.25,port=37080,sendBufSz=98304,recvBufSz=2097152--
+[2026-04-16 14:47:59.515][15600]AlprClient::Reconnect(805): ---------ReGetDeviceFunList start-------
+[2026-04-16 14:47:59.515][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetFunList, len = 12.
+[2026-04-16 14:48:00.031][15600]AlprClient::Reconnect(808): ---------ReGetDeviceFunList end-------
+[2026-04-16 14:48:00.031][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_SetAPIClientType, len = 16.
+[2026-04-16 14:48:00.031][15600]AlprClient::SetAPIClientType(7288): INFO:------SetAPIClientType sucess(m_eAPIClientType=0)------
+[2026-04-16 14:48:00.234][15600]AlprClient::Reconnect(812): ---------SetAPIClientType nRet=0-------
+[2026-04-16 14:48:00.234][15600]AlprClient::SendDevStatus(5515): m_nHandleID:0,aux1IP:255.255.255.255,aux1Status:-1,aux2IP:255.255.255.255,aux2Status:-1,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:48:00.234][15600]AlprClient::Entry(1090): Info: dev 192.168.1.25 m_bDisconnect=0,fd=28344
+[2026-04-16 14:48:00.234][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_RespFunList,type=1276,len=267
+[2026-04-16 14:48:00.234][15600]AlprClient::Parse(1719): sizeof(m_devSupportFunList):256,len:255, 111011101101010111011000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[2026-04-16 14:48:00.234][15600]AlprClient::Parse(1725): m_nHandleID:0, ip_addr:192.168.1.25, m_devSupportFunList:111011101101010111011000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[2026-04-16 14:48:00.234][15600]AlprClient::SetSDKFunList(8370): szSDKkSupportFunList:1,len:1
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_SetSDKFunlist, len = 13.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetBaseParam, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetROIEx, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetSystemConfig, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetRS485Config, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetDevSN, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetDevVerInfo, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetGateConfig, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetAlprConfig, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetAppAlprConfig, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetVirtualCoil, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetOfflineParam, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::GetCarTeamSignal(7496): -------M_GetCarTeamModeReq--Send Req
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetTeamModeReq, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetFtpClientCfgReq, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetWebServiceConfig, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetHttpClientCfgReq, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetLedScreenConfig, len = 12.
+[2026-04-16 14:48:00.234][15600]AlprClient::GetPlateListExt(7686): ========Plate Type:0,flag:0,len:0
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetPlateListExtReq, len = 16.
+[2026-04-16 14:48:00.234][15600]AlprClient::GetPlateListExt(7686): ========Plate Type:1,flag:0,len:0
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetPlateListExtReq, len = 16.
+[2026-04-16 14:48:00.234][15600]AlprClient::GetPlateListExt(7686): ========Plate Type:2,flag:0,len:0
+[2026-04-16 14:48:00.234][15600]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_GetPlateListExtReq, len = 16.
+[2026-04-16 14:48:00.250][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetBaseParam,type=1238,len=62
+[2026-04-16 14:48:00.250][15600]AlprClient::Parse(1580): Info:get from device,nCountryCode=977
+[2026-04-16 14:48:00.250][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetROIEx,type=1228,len=44
+[2026-04-16 14:48:00.250][15600]AlprClient::HandleROIEx(4396): Debug:m_nHandleID=0,m_RoiEx(50,175),(1230,175),(1230,690),(50,690)--
+[2026-04-16 14:48:00.250][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetSystemConfig,type=1205,len=558
+[2026-04-16 14:48:00.250][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetRS485Config,type=1209,len=116
+[2026-04-16 14:48:00.250][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetDevSN,type=1235,len=976
+[2026-04-16 14:48:00.250][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetDevVerInfo,type=1236,len=111
+[2026-04-16 14:48:00.250][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetGateConfig,type=1211,len=28
+[2026-04-16 14:48:00.265][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetAlprConfig,type=1207,len=28
+[2026-04-16 14:48:00.265][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetAppAlprConfig,type=1315,len=44
+[2026-04-16 14:48:00.265][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetVirtualCoil,type=1231,len=44
+[2026-04-16 14:48:00.265][15600]AlprClient::HandleVirtualCoil(4426): Debug:m_nHandleID=0,m_VirtualCoil(50,346),(1230,346),(1230,356),(50,356)--
+[2026-04-16 14:48:00.265][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetOfflineParam,type=1245,len=168
+[2026-04-16 14:48:00.281][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetCarTeamModeRes,type=1279,len=16
+[2026-04-16 14:48:00.281][15600]AlprClient::Parse(1779): -------Receive--carTeamMode=0
+[2026-04-16 14:48:00.281][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetFtpClientCfgRes,type=1297,len=336
+[2026-04-16 14:48:00.281][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetWebServiceConfig,type=1325,len=852
+[2026-04-16 14:48:00.281][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetHttpClientCfgRes,type=1301,len=544
+[2026-04-16 14:48:00.281][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetLedScreenConfig,type=1352,len=148
+[2026-04-16 14:48:00.281][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetPlateListRes,type=1223,len=148
+[2026-04-16 14:48:00.281][15600]AlprClient::HandleGetPlateListExtRes(7979): GetPlateListExtRes OK, type = 0, count = 1.
+[2026-04-16 14:48:00.281][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetPlateListRes,type=1223,len=20
+[2026-04-16 14:48:00.281][15600]AlprClient::HandleGetPlateListExtRes(7979): GetPlateListExtRes OK, type = 1, count = 0.
+[2026-04-16 14:48:00.281][15600]AlprClient::Parse(1365): camera resp, m_nHandleID=0,t=M_GetPlateListRes,type=1223,len=20
+[2026-04-16 14:48:00.281][15600]AlprClient::HandleGetPlateListExtRes(7979): GetPlateListExtRes OK, type = 2, count = 0.
+[2026-04-16 14:48:00.500][21484]AlprClient::Reconnect(712): Info:--connect success,addr=192.168.1.25,port:37080,m_nHandleID=0.
+[2026-04-16 14:48:00.500][21484]AlprSDK_ConnectDev(1610): Info:--nHandleID=0,retVal=0.
+[2026-04-16 14:48:00.500][21484]AlprSDK_StartVideo(1826): nHandleID=0
+[2026-04-16 14:48:01.078][21484]EZVideoSDK::StartVideo(2172): Login Succ,IP=192.168.1.25,u16Port=443,szUser=admin,hUserId=18E89008--
+[2026-04-16 14:48:01.328][21484]EZVideoSDK::StartVideo(2225): m_nVideoWidth=0,m_nVideoHeight=0--
+[2026-04-16 14:48:01.328][21484]EZVideoSDK::StartVideo(2234): IP=192.168.1.25,m_hVideoWnd=0x0,hRealPlay=18ED2B08--
+[2026-04-16 14:48:01.421][21484]EZVideoSDK::StartVideo(2237): m_nVideoWidth=0,m_nVideoHeight=0--
+[2026-04-16 14:48:02.843][5752]funStreamDataCallBack(1744): szIP=192.168.1.25,m_nVideoWidth=720,m_nVideoHeight=576--
+[2026-04-16 14:48:03.109][15600]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:48:08.156][5752]funStreamDataCallBack(1799): I8_MP4Play_InputData failed dwPort=0,count = 3, dwBufferSize=4202, uiFrameType=19--
+[2026-04-16 14:48:13.125][15600]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:48:23.125][15600]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:48:33.156][15600]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:48:43.218][15600]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:48:53.234][15600]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:49:01.343][22112]AlprClient::SendDevStatus(5526): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:49:03.265][15600]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:49:08.156][5752]funStreamDataCallBack(1799): I8_MP4Play_InputData failed dwPort=0,count = 2, dwBufferSize=4147, uiFrameType=19--
+[2026-04-16 14:49:13.265][15600]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:49:23.359][15600]AlprClient::GetDevStatus(5487): m_nHandleID:0,aux1IP:0.0.0.0,aux1Status:0,aux2IP:0.0.0.0,aux2Status:0,GateSwitchStatus:255, GateRunStatus:255, FeelStatus:255, HeartBeatStatus:0, ip_addr:192.168.1.25, PhotosensitiveValue:65535, AuxInStatus[0]:255, AuxInStatus[1]:255, AuxInStatus[2]:255, GateOpenStatus:255, GateCloseStatus:255, PrinterStatus:255, PrinterSpecialStatus:255,TimeoutAlarm:1, ScanCodeStatus:1
+[2026-04-16 14:49:26.890][3192]AlprClient::SendMsgtoSvr(643): Info:nHandleID=0,dev=192.168.1.25,T = M_OpenGate, len = 12.
+[2026-04-16 14:49:29.062][4044]AlprSDK_Cleanup(762): start
+[2026-04-16 14:49:29.062][4044]EZVideoSDK::StopVideo(2627): Info:Video local stopping start,hRealPlay=18ED2B08--

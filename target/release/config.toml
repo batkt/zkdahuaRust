@@ -1,7 +1,7 @@
     [server]
     url          = "https://turees.zevtabs.mn/api/zogsoolSdkService"
-    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OGNmN2U0MTU0ODBkYWQyY2I0ZmRlZSIsIm5lciI6ItCm0Y3Qs9C80Y3QtCIsImJhaWd1dWxsYWdpaW5JZCI6IjY1OGNmN2U0MTU0ODBkYWQyY2I0ZmRlYyIsImlhdCI6MTc3NTYzMTczM30.WDVlNPo-uYFJwbLAu1qCuJaIqkizIqD4u5EUctlE69U"
-    barilgiinId  = "658d2a0488afdbb4feaf191e"
+    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmY0NTdkMTg1MjgwZGI2NzZkMGI1MyIsIm5lciI6IkNBZG1pbiIsImJhaWd1dWxsYWdpaW5JZCI6IjYxMmY0NTdkMTg1MjgwZGI2NzZkMGI1MSIsImlhdCI6MTc3NjI0MjYxN30.uCoWLRJDi9My0VOetzPWI98ZVwOEgIagSeUS4OYkeAM"
+    barilgiinId  = "63db33630a47db15f81d18b3"
     timeout_secs = 30
     retry_count  = 3
 
@@ -15,14 +15,17 @@
     company_name = "ParkEase"
 
     [[cameras]]
-    ip       = "192.168.111.5"
-    password = "mongol123"
-    http_port = 443
-    gate = "entrance"
-    sambar_type = "sambar" 
+    ip          = "192.168.1.21"
+    password    = "admin123"
+    http_port   = 443
+    gate        = "entrance"
+    sambar_type = "sambar"
+    camera_type = "dahua"
+
     [[cameras]]
-    ip       = "192.168.111.4"
-    password = "mongol123"
-    http_port = 443
-    gate = "exit"
-    sambar_type = "sambar" 
+    ip          = "192.168.1.25"
+    password    = "123456"
+    http_port   = 443
+    gate        = "exit"
+    sambar_type = "sambar"
+    camera_type = "zk"
