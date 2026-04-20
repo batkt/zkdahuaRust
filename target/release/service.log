@@ -7696,3 +7696,146 @@
 [2026-04-17 08:22:36] [DEBUG] starting new connection: http://192.168.1.21/
 [2026-04-17 08:22:36] [DEBUG] connecting to 192.168.1.21:80
 [2026-04-17 08:22:36] [DEBUG] connected to 192.168.1.21:80
+[2026-04-17 14:19:49] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\service.log
+[2026-04-17 14:19:49] [INFO] === Dahua Parking Service starting ===
+[2026-04-17 14:19:49] [INFO] Plate event processor started
+[2026-04-17 14:19:49] [INFO] [192.168.1.21] Plate listener холбогдож байна...
+[2026-04-17 14:19:49] [INFO] API server listening on 0.0.0.0:5001
+[2026-04-17 14:19:49] [DEBUG] starting new connection: https://192.168.1.21/
+[2026-04-17 14:19:49] [DEBUG] connecting to 192.168.1.21:443
+[2026-04-17 14:19:49] [INFO] SDK | initialize хийж байна...
+[2026-04-17 14:19:49] [DEBUG] connected to 192.168.1.21:443
+[2026-04-17 14:19:49] [INFO] SDK | амжилттай аслаа
+[2026-04-17 14:19:49] [INFO] SDK | camera холбож байна: 192.168.1.21
+[2026-04-17 14:19:49] [DEBUG] starting new connection: https://192.168.1.21/
+[2026-04-17 14:19:49] [DEBUG] connecting to 192.168.1.21:443
+[2026-04-17 14:19:49] [DEBUG] connected to 192.168.1.21:443
+[2026-04-17 14:19:49] [INFO] SDK | camera амжилттай холбогдлоо: 192.168.1.21
+[2026-04-17 14:19:50] [INFO] [192.168.1.21] Амжилттай холбогдлоо — plate event хүлээж байна...
+[2026-04-17 14:21:21] [INFO] >>> Plate бүртгэгдлээ: 9117УБӨ | IP: 192.168.1.21
+[2026-04-17 14:21:21] [DEBUG] starting new connection: https://turees.zevtabs.mn/
+[2026-04-17 14:21:21] [DEBUG] connecting to 103.143.40.230:443
+[2026-04-17 14:21:21] [DEBUG] connected to 103.143.40.230:443
+[2026-04-17 14:21:21] [DEBUG] pooling idle connection for ("https", turees.zevtabs.mn)
+[2026-04-17 14:21:21] [INFO] PLATE OK | plate=9117УБӨ status=200 OK body=
+[2026-04-17 14:21:21] [DEBUG] starting new connection: http://192.168.1.21/
+[2026-04-17 14:21:21] [DEBUG] connecting to 192.168.1.21:80
+[2026-04-17 14:21:21] [DEBUG] connected to 192.168.1.21:80
+[2026-04-17 14:21:21] [DEBUG] starting new connection: http://192.168.1.21/
+[2026-04-17 14:21:21] [DEBUG] connecting to 192.168.1.21:80
+[2026-04-17 14:21:21] [DEBUG] connected to 192.168.1.21:80
+[2026-04-17 14:21:21] [DEBUG] starting new connection: http://192.168.1.21/
+[2026-04-17 14:21:21] [DEBUG] connecting to 192.168.1.21:80
+[2026-04-17 14:21:21] [DEBUG] connected to 192.168.1.21:80
+[2026-04-17 14:21:21] [DEBUG] starting new connection: http://192.168.1.21/
+[2026-04-17 14:21:21] [DEBUG] connecting to 192.168.1.21:80
+[2026-04-17 14:21:21] [DEBUG] connected to 192.168.1.21:80
+[2026-04-17 14:22:08] [INFO] >>> Plate бүртгэгдлээ: 9117УБӨ | IP: 192.168.1.21
+[2026-04-17 14:22:08] [DEBUG] reuse idle connection for ("https", turees.zevtabs.mn)
+[2026-04-17 14:22:08] [DEBUG] pooling idle connection for ("https", turees.zevtabs.mn)
+[2026-04-17 14:22:08] [INFO] PLATE OK | plate=9117УБӨ status=200 OK body=
+[2026-04-17 14:22:08] [DEBUG] starting new connection: http://192.168.1.21/
+[2026-04-17 14:22:08] [DEBUG] connecting to 192.168.1.21:80
+[2026-04-17 14:22:08] [DEBUG] connected to 192.168.1.21:80
+[2026-04-17 14:22:08] [DEBUG] starting new connection: http://192.168.1.21/
+[2026-04-17 14:22:08] [DEBUG] connecting to 192.168.1.21:80
+[2026-04-17 14:22:08] [DEBUG] connected to 192.168.1.21:80
+[2026-04-17 14:22:08] [DEBUG] starting new connection: http://192.168.1.21/
+[2026-04-17 14:22:08] [DEBUG] connecting to 192.168.1.21:80
+[2026-04-17 14:22:08] [DEBUG] connected to 192.168.1.21:80
+[2026-04-17 14:22:08] [DEBUG] starting new connection: http://192.168.1.21/
+[2026-04-17 14:22:08] [DEBUG] connecting to 192.168.1.21:80
+[2026-04-17 14:22:08] [DEBUG] connected to 192.168.1.21:80
+[2026-04-17 14:23:00] [INFO] >>> Plate бүртгэгдлээ: 9117УБӨ | IP: 192.168.1.21
+[2026-04-17 14:23:00] [DEBUG] reuse idle connection for ("https", turees.zevtabs.mn)
+[2026-04-17 14:23:00] [DEBUG] pooling idle connection for ("https", turees.zevtabs.mn)
+[2026-04-17 14:23:00] [INFO] PLATE OK | plate=9117УБӨ status=200 OK body=
+[2026-04-17 14:23:00] [DEBUG] starting new connection: http://192.168.1.21/
+[2026-04-17 14:23:00] [DEBUG] connecting to 192.168.1.21:80
+[2026-04-17 14:23:00] [DEBUG] connected to 192.168.1.21:80
+[2026-04-17 14:23:00] [DEBUG] starting new connection: http://192.168.1.21/
+[2026-04-17 14:23:00] [DEBUG] connecting to 192.168.1.21:80
+[2026-04-17 14:23:00] [DEBUG] connected to 192.168.1.21:80
+[2026-04-17 14:23:52] [ERROR] SDK HEARTBEAT | 192.168.1.21 unreachable — reconnecting
+[2026-04-17 14:23:59] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 1: error 0x8000006b
+[2026-04-17 14:24:08] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 2: error 0x8000006b
+[2026-04-17 14:24:18] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 3: error 0x8000006b
+[2026-04-17 14:24:28] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 4: error 0x8000006b
+[2026-04-17 14:24:40] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 5: error 0x8000006b
+[2026-04-17 14:24:40] [ERROR] Дахин холбогдоход амжилтгүй: 192.168.1.21
+[2026-04-17 14:25:43] [ERROR] SDK HEARTBEAT | 192.168.1.21 unreachable — reconnecting
+[2026-04-17 14:25:50] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 1: error 0x8000006b
+[2026-04-17 14:25:59] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 2: error 0x8000006b
+[2026-04-17 14:26:05] [WARN] [192.168.1.21] Холболтын алдаа (#1): error decoding response body
+[2026-04-17 14:26:05] [INFO] [192.168.1.21] Алдааны дараа 2s хүлээж байна (#1)
+[2026-04-17 14:26:05] [DEBUG] client connection error: hyper::Error(Shutdown, Os { code: 10054, kind: ConnectionReset, message: "An existing connection was forcibly closed by the remote host." })
+[2026-04-17 14:26:07] [INFO] [192.168.1.21] Plate listener холбогдож байна...
+[2026-04-17 14:26:07] [DEBUG] starting new connection: https://192.168.1.21/
+[2026-04-17 14:26:07] [DEBUG] connecting to 192.168.1.21:443
+[2026-04-17 14:26:08] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 3: error 0x8000006b
+[2026-04-17 14:26:19] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 4: error 0x8000006b
+[2026-04-17 14:26:28] [WARN] [192.168.1.21] Холболтын алдаа (#2): error sending request for url (https://192.168.1.21/cgi-bin/snapManager.cgi?action=attachFileProc&Flags[0]=Event&Events=[TrafficJunction]&heartbeat=5)
+[2026-04-17 14:26:28] [INFO] [192.168.1.21] Алдааны дараа 4s хүлээж байна (#2)
+[2026-04-17 14:26:30] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 5: error 0x8000006b
+[2026-04-17 14:26:30] [ERROR] Дахин холбогдоход амжилтгүй: 192.168.1.21
+[2026-04-17 14:26:32] [INFO] [192.168.1.21] Plate listener холбогдож байна...
+[2026-04-17 14:26:32] [DEBUG] starting new connection: https://192.168.1.21/
+[2026-04-17 14:26:32] [DEBUG] connecting to 192.168.1.21:443
+[2026-04-17 14:26:54] [WARN] [192.168.1.21] Холболтын алдаа (#3): error sending request for url (https://192.168.1.21/cgi-bin/snapManager.cgi?action=attachFileProc&Flags[0]=Event&Events=[TrafficJunction]&heartbeat=5)
+[2026-04-17 14:26:54] [INFO] [192.168.1.21] Алдааны дараа 8s хүлээж байна (#3)
+[2026-04-17 14:27:02] [INFO] [192.168.1.21] Plate listener холбогдож байна...
+[2026-04-17 14:27:02] [DEBUG] starting new connection: https://192.168.1.21/
+[2026-04-17 14:27:02] [DEBUG] connecting to 192.168.1.21:443
+[2026-04-17 14:27:23] [WARN] [192.168.1.21] Холболтын алдаа (#4): error sending request for url (https://192.168.1.21/cgi-bin/snapManager.cgi?action=attachFileProc&Flags[0]=Event&Events=[TrafficJunction]&heartbeat=5)
+[2026-04-17 14:27:23] [INFO] [192.168.1.21] Алдааны дараа 16s хүлээж байна (#4)
+[2026-04-17 14:27:33] [ERROR] SDK HEARTBEAT | 192.168.1.21 unreachable — reconnecting
+[2026-04-17 14:27:39] [INFO] [192.168.1.21] Plate listener холбогдож байна...
+[2026-04-17 14:27:39] [DEBUG] starting new connection: https://192.168.1.21/
+[2026-04-17 14:27:39] [DEBUG] connecting to 192.168.1.21:443
+[2026-04-17 14:27:41] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 1: error 0x8000006b
+[2026-04-17 14:27:49] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 2: error 0x8000006b
+[2026-04-17 14:27:59] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 3: error 0x8000006b
+[2026-04-17 14:28:00] [WARN] [192.168.1.21] Холболтын алдаа (#5): error sending request for url (https://192.168.1.21/cgi-bin/snapManager.cgi?action=attachFileProc&Flags[0]=Event&Events=[TrafficJunction]&heartbeat=5)
+[2026-04-17 14:28:00] [INFO] [192.168.1.21] Алдааны дараа 30s хүлээж байна (#5)
+[2026-04-17 14:28:10] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 4: error 0x8000006b
+[2026-04-17 14:28:21] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 5: error 0x8000006b
+[2026-04-17 14:28:21] [ERROR] Дахин холбогдоход амжилтгүй: 192.168.1.21
+[2026-04-17 14:28:30] [INFO] [192.168.1.21] Plate listener холбогдож байна...
+[2026-04-17 14:28:30] [DEBUG] starting new connection: https://192.168.1.21/
+[2026-04-17 14:28:30] [DEBUG] connecting to 192.168.1.21:443
+[2026-04-17 14:28:51] [WARN] [192.168.1.21] Холболтын алдаа (#6): error sending request for url (https://192.168.1.21/cgi-bin/snapManager.cgi?action=attachFileProc&Flags[0]=Event&Events=[TrafficJunction]&heartbeat=5)
+[2026-04-17 14:28:51] [INFO] [192.168.1.21] Алдааны дараа 30s хүлээж байна (#6)
+[2026-04-17 14:29:21] [INFO] [192.168.1.21] Plate listener холбогдож байна...
+[2026-04-17 14:29:21] [DEBUG] starting new connection: https://192.168.1.21/
+[2026-04-17 14:29:21] [DEBUG] connecting to 192.168.1.21:443
+[2026-04-17 14:29:24] [ERROR] SDK HEARTBEAT | 192.168.1.21 unreachable — reconnecting
+[2026-04-17 14:29:32] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 1: error 0x8000006b
+[2026-04-17 14:29:40] [WARN] Холболт амжилтгүй 192.168.1.21 attempt 2: error 0x8000006b
+[2026-04-17 14:29:42] [WARN] [192.168.1.21] Холболтын алдаа (#7): error sending request for url (https://192.168.1.21/cgi-bin/snapManager.cgi?action=attachFileProc&Flags[0]=Event&Events=[TrafficJunction]&heartbeat=5)
+[2026-04-17 14:29:42] [INFO] [192.168.1.21] Алдааны дараа 30s хүлээж байна (#7)
+[2026-04-17 14:30:12] [INFO] [192.168.1.21] Plate listener холбогдож байна...
+[2026-04-17 14:30:12] [DEBUG] starting new connection: https://192.168.1.21/
+[2026-04-17 14:30:12] [DEBUG] connecting to 192.168.1.21:443
+[2026-04-17 14:30:12] [DEBUG] connected to 192.168.1.21:443
+[2026-04-17 14:30:12] [DEBUG] starting new connection: https://192.168.1.21/
+[2026-04-17 14:30:12] [DEBUG] connecting to 192.168.1.21:443
+[2026-04-17 14:30:12] [DEBUG] connected to 192.168.1.21:443
+[2026-04-17 14:30:13] [INFO] [192.168.1.21] Амжилттай холбогдлоо — plate event хүлээж байна...
+[2026-04-17 15:05:56] [DEBUG] starting new connection: http://192.168.1.87/
+[2026-04-17 15:05:56] [DEBUG] connecting to 192.168.1.87:80
+[2026-04-17 15:06:51] [DEBUG] starting new connection: http://192.168.1.87/
+[2026-04-17 15:06:51] [DEBUG] connecting to 192.168.1.87:80
+[2026-04-17 15:07:02] [DEBUG] starting new connection: http://192.168.1.91/
+[2026-04-17 15:07:02] [DEBUG] connecting to 192.168.1.91:80
+[2026-04-17 15:07:07] [DEBUG] starting new connection: http://192.168.1.91/
+[2026-04-17 15:07:07] [DEBUG] connecting to 192.168.1.91:80
+[2026-04-17 15:07:10] [DEBUG] starting new connection: http://192.168.1.87/
+[2026-04-17 15:07:10] [DEBUG] connecting to 192.168.1.87:80
+[2026-04-17 15:07:22] [DEBUG] starting new connection: http://192.168.1.91/
+[2026-04-17 15:07:22] [DEBUG] connecting to 192.168.1.91:80
+[2026-04-17 15:07:27] [DEBUG] starting new connection: http://192.168.1.91/
+[2026-04-17 15:07:27] [DEBUG] connecting to 192.168.1.91:80
+[2026-04-17 15:07:37] [DEBUG] starting new connection: http://192.168.1.91/
+[2026-04-17 15:07:37] [DEBUG] connecting to 192.168.1.91:80
+[2026-04-17 15:07:42] [DEBUG] starting new connection: http://192.168.1.91/
+[2026-04-17 15:07:42] [DEBUG] connecting to 192.168.1.91:80

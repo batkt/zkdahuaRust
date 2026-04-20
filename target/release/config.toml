@@ -1,7 +1,7 @@
     [server]
     url          = "https://turees.zevtabs.mn/api/zogsoolSdkService"
-    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmY0NTdkMTg1MjgwZGI2NzZkMGI1MyIsIm5lciI6IkNBZG1pbiIsImJhaWd1dWxsYWdpaW5JZCI6IjYxMmY0NTdkMTg1MjgwZGI2NzZkMGI1MSIsImlhdCI6MTc3NjI0MjYxN30.uCoWLRJDi9My0VOetzPWI98ZVwOEgIagSeUS4OYkeAM"
-    barilgiinId  = "63db33630a47db15f81d18b3"
+    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YjMzMGE0NjIxZDRmNWQxMWYwOWM5ZCIsIm5lciI6ItCh0LDQudCx0Lgg0KXQpdCaIiwiYmFpZ3V1bGxhZ2lpbklkIjoiNjZiMzMwYTQ2MjFkNGY1ZDExZjA5YzhlIiwiaWF0IjoxNzc2NDA5NTY4fQ.r6zikfTYfwt3XbsETH_zXUILUMOtHGZFLImu09brbjU"
+    barilgiinId  = "66b330a4621d4f5d11f09c8f"
     timeout_secs = 30
     retry_count  = 3
 
@@ -11,11 +11,11 @@
     connect_timeout_ms      = 5000
     max_connect_retries     = 5
     port                    = 37777
-    org_name = "Шөнийн зах"
+    org_name = "Өгөөмөр зах"
     company_name = "ParkEase"
 
     [[cameras]]
-    ip          = "192.168.1.21"
+    ip          = "192.168.1.91"
     password    = "admin123"
     http_port   = 443
     gate        = "entrance"
@@ -23,7 +23,7 @@
     camera_type = "dahua"
 
     [[cameras]]
-    ip          = "192.168.1.25"
+    ip          = "192.168.1.87"
     password    = "123456"
     http_port   = 443
     gate        = "exit"
