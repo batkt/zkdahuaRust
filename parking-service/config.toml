@@ -1,0 +1,59 @@
+# Гэгээнтэн parking — parking-service config
+# Copy this file as config.toml next to parking-service.exe + AlprSDK.dll
+
+[server]
+url              = "https://turees.zevtabs.mn/api/zogsoolSdkService"
+token            = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YzVmZTkzMGE1ZGM4MWUxNWYxZmI1YyIsIm5lciI6ItCz0Y3Qs9GN0Y3QvdGC0Y3QvSIsImJhaWd1dWxsYWdpaW5JZCI6IjY3MTVlZjJjYTVjZWZiM2U1NDUwNTQyOCIsImlhdCI6MTc3NjY3MTA2Mn0.c6Qh3rrvHGWjRNAut6vvwy4AHsQNNMAxeotw9S4qeSw"
+barilgiinId      = "69bbd7ccacd5dafa46593dc6"
+timeout_secs     = 30
+retry_count      = 3
+offline_open_gate = true
+
+[sdk]
+username                = "admin"
+search_interval_ms      = 3000
+heartbeat_interval_secs = 30
+connect_timeout_ms      = 5000
+max_connect_retries     = 5
+
+[[cameras]]
+ip          = "192.168.2.151"
+port        = 443
+password    = "123456"
+gate        = "entrance"
+camera_type = "zk"
+
+[[cameras]]
+ip          = "192.168.2.154"
+port        = 443
+password    = "123456"
+gate        = "entrance"
+camera_type = "zk"
+
+[[cameras]]
+ip          = "192.168.2.156"
+port        = 443
+password    = "admin123"
+gate        = "entrance"
+camera_type = "dahua"
+
+[[cameras]]
+ip          = "192.168.2.152"
+port        = 443
+password    = "123456"
+gate        = "exit"
+camera_type = "zk"
+
+[[cameras]]
+ip          = "192.168.2.153"
+port        = 443
+password    = "123456"
+gate        = "exit"
+camera_type = "zk"
+
+[[cameras]]
+ip          = "192.168.2.155"
+port        = 443
+password    = "admin123"
+gate        = "exit"
+camera_type = "dahua"

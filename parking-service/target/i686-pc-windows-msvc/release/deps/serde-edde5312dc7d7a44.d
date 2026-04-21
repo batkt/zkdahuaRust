@@ -1,0 +1,14 @@
+D:\zolbayar\dahua-service\parking-service\target\i686-pc-windows-msvc\release\deps\serde-edde5312dc7d7a44.d: C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs D:\zolbayar\dahua-service\parking-service\target\i686-pc-windows-msvc\release\build\serde-e511425ac698998b\out/private.rs
+
+D:\zolbayar\dahua-service\parking-service\target\i686-pc-windows-msvc\release\deps\libserde-edde5312dc7d7a44.rlib: C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs D:\zolbayar\dahua-service\parking-service\target\i686-pc-windows-msvc\release\build\serde-e511425ac698998b\out/private.rs
+
+D:\zolbayar\dahua-service\parking-service\target\i686-pc-windows-msvc\release\deps\libserde-edde5312dc7d7a44.rmeta: C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs D:\zolbayar\dahua-service\parking-service\target\i686-pc-windows-msvc\release\build\serde-e511425ac698998b\out/private.rs
+
+C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs:
+C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs:
+C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs:
+C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs:
+C:\Users\zzolb\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs:
+D:\zolbayar\dahua-service\parking-service\target\i686-pc-windows-msvc\release\build\serde-e511425ac698998b\out/private.rs:
+
+# env-dep:OUT_DIR=D:\\zolbayar\\dahua-service\\parking-service\\target\\i686-pc-windows-msvc\\release\\build\\serde-e511425ac698998b\\out

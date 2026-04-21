@@ -1,0 +1,30 @@
+# ─────────────────────────────────────────────────────────────────────
+#  Parking Service — config.toml
+#  Place this file in the SAME folder as parking-service.exe + AlprSDK.dll
+# ─────────────────────────────────────────────────────────────────────
+
+[server]
+url              = "https://turees.zevtabs.mn/api/zogsoolSdkService"
+token            = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OGNmN2U0MTU0ODBkYWQyY2I0ZmRlZSIsIm5lciI6ItCm0Y3Qs9C80Y3QtCIsImJhaWd1dWxsYWdpaW5JZCI6IjY1OGNmN2U0MTU0ODBkYWQyY2I0ZmRlYyIsImlhdCI6MTc3NTYzNTIxNH0.ROB0T7KNoMF0ns59iempeotJ--gXmxRRZeBRGdRdW-8"
+barilgiinId      = "68f89c28feaaddcf48641640"
+timeout_secs     = 30
+retry_count      = 3
+offline_open_gate = true
+
+[sdk]
+username                = "admin"
+search_interval_ms      = 3000
+heartbeat_interval_secs = 30
+connect_timeout_ms      = 5000
+max_connect_retries     = 5
+
+[[cameras]]
+ip       = "172.16.19.101"
+port     = 443
+password = "123456"
+gate     = "entrance"
+[[cameras]]
+ip       = "172.16.19.102"
+port     = 443
+password = "123456"
+gate     = "exit"
