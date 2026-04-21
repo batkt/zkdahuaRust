@@ -94,6 +94,14 @@ impl CameraManager {
     }
 
 
+    pub fn camera_type_for_ip(&self, ip: &str) -> String {
+        self.cam_cfg
+            .iter()
+            .find(|c| c.ip == ip)
+            .and_then(|c| c.camera_type.clone())
+            .unwrap_or_else(|| "zk".to_string())
+    }
+
     pub fn sambar_type_for_ip(&self, ip: &str) -> String {
         self.cam_cfg
             .iter()
@@ -132,6 +140,10 @@ impl CameraManager {
         cams.clear();
 
         for cam in &self.cam_cfg {
+            if cam.camera_type.as_deref() != Some("dahua") {
+                log::info!("SDK | skipping non-Dahua camera: {}", cam.ip);
+                continue;
+            }
             log::info!("SDK | camera холбож байна: {}", cam.ip);
 
             let handle = Self::connect_with_retry_inner(sdk, &cam.ip, &cam.password, &self.sdk_cfg);
@@ -189,53 +201,71 @@ impl CameraManager {
 
     pub fn open_gate(&self, ip: &str) -> bool {
         let sdk = match DahuaSdk::load() { Ok(s) => s, Err(_) => return false };
-        let handle = match self.handle_for_ip(ip) {
-            Some(h) => h,
-            None => { warn!("open_gate: IP {ip} handle олдсонгүй"); return false; }
+
+        let try_open = |h: HANDLE| -> bool {
+            let mut strobe = NET_CTRL_OPEN_STROBE::default();
+            strobe.nChannelId = 0;
+            let ret = unsafe {
+                (sdk.control_device)(
+                    h,
+                    EM_CTRL_OPEN_STROBE,
+                    &mut strobe as *mut NET_CTRL_OPEN_STROBE as *mut c_void,
+                    5000,
+                )
+            };
+            ret != 0
         };
 
-        let mut strobe = NET_CTRL_OPEN_STROBE::default();
-        strobe.nChannelId = 0;
-
-        let ret = unsafe {
-            (sdk.control_device)(
-                handle,
-                EM_CTRL_OPEN_STROBE,
-                &mut strobe as *mut NET_CTRL_OPEN_STROBE as *mut c_void,
-                5000,
-            )
-        };
-        let err = unsafe { (sdk.get_last_error)() };
-        if ret == 0 {
-            log::error!("GATE FAIL  | ip={ip} err={err:#x} — reconnecting");
-        }
-
-        // Handle хуучирсан бол дахин холбогдоно
-        if ret == 0 {
-            self.reconnect_single(ip);
-
-            // Дахин оролдоно
-            if let Some(new_handle) = self.handle_for_ip(ip) {
-                let mut strobe2 = NET_CTRL_OPEN_STROBE::default();
-                strobe2.nChannelId = 0;
-                let ret2 = unsafe {
-                    (sdk.control_device)(
-                        new_handle,
-                        EM_CTRL_OPEN_STROBE,
-                        &mut strobe2 as *mut NET_CTRL_OPEN_STROBE as *mut c_void,
-                        5000,
-                    )
-                };
-                if ret2 == 0 {
-                    log::error!("GATE RETRY FAIL | ip={ip}");
-                }
-                return ret2 != 0;
+        // First attempt with current handle
+        if let Some(h) = self.handle_for_ip(ip) {
+            if try_open(h) {
+                return true;
             }
-            log::error!("GATE RETRY FAIL | ip={ip} — no handle after reconnect");
-            return false;
+            let err = unsafe { (sdk.get_last_error)() };
+            log::error!("GATE FAIL | ip={ip} err={err:#x} — waiting for reconnect");
+        } else {
+            warn!("open_gate: IP {ip} handle олдсонгүй — waiting for reconnect");
         }
 
-        ret != 0
+        // Acquire reconnect_lock — if heartbeat is mid-reconnect this WAITS for it to finish.
+        // After the lock is released the handle_map has the fresh handle already.
+        {
+            let _guard = self.reconnect_lock.lock().unwrap();
+
+            // Try with whatever handle is now in the map (heartbeat may have fixed it)
+            if let Some(h) = self.handle_for_ip(ip) {
+                if try_open(h) {
+                    println!("GATE OK after waiting for reconnect | ip={ip}");
+                    return true;
+                }
+            }
+
+            // Still failing — reconnect ourselves while holding the lock
+            let password = self.cam_cfg.iter()
+                .find(|c| c.ip == ip)
+                .map(|c| c.password.clone())
+                .unwrap_or_default();
+
+            if let Some(old_h) = self.handle_for_ip(ip) {
+                unsafe { let _ = (sdk.logout)(old_h); }
+            }
+
+            let new_handle = Self::connect_with_retry_inner(sdk, ip, &password, &self.sdk_cfg);
+            if !new_handle.is_null() {
+                self.handle_map.lock().unwrap().insert(ip.to_string(), new_handle);
+                let mut cams = self.cameras.lock().unwrap();
+                if let Some(cam) = cams.iter_mut().find(|c| c.ip == ip) {
+                    cam.handle = new_handle;
+                }
+                if try_open(new_handle) {
+                    println!("GATE OK after manual reconnect | ip={ip}");
+                    return true;
+                }
+            }
+        }
+
+        log::error!("GATE RETRY FAIL | ip={ip}");
+        false
     }
 
     fn reconnect_single(&self, ip: &str) {
@@ -281,7 +311,10 @@ impl CameraManager {
 
     pub fn check_sdk_connections(&self) {
         let ips_to_check: Vec<String> = {
-            self.cam_cfg.iter().map(|c| c.ip.clone()).collect()
+            self.cam_cfg.iter()
+                .filter(|c| c.camera_type.as_deref() == Some("dahua"))
+                .map(|c| c.ip.clone())
+                .collect()
         };
 
         let sdk_port = self.sdk_cfg.port;

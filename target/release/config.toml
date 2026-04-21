@@ -1,7 +1,7 @@
-    [server]
+[server]
     url          = "https://turees.zevtabs.mn/api/zogsoolSdkService"
-    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YjMzMGE0NjIxZDRmNWQxMWYwOWM5ZCIsIm5lciI6ItCh0LDQudCx0Lgg0KXQpdCaIiwiYmFpZ3V1bGxhZ2lpbklkIjoiNjZiMzMwYTQ2MjFkNGY1ZDExZjA5YzhlIiwiaWF0IjoxNzc2NDA5NTY4fQ.r6zikfTYfwt3XbsETH_zXUILUMOtHGZFLImu09brbjU"
-    barilgiinId  = "66b330a4621d4f5d11f09c8f"
+    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YzVmZTkzMGE1ZGM4MWUxNWYxZmI1YyIsIm5lciI6ItCz0Y3Qs9GN0Y3QvdGC0Y3QvSIsImJhaWd1dWxsYWdpaW5JZCI6IjY3MTVlZjJjYTVjZWZiM2U1NDUwNTQyOCIsImlhdCI6MTc3NjY3MTA2Mn0.c6Qh3rrvHGWjRNAut6vvwy4AHsQNNMAxeotw9S4qeSw"
+    barilgiinId  = "69bbd7ccacd5dafa46593dc6"
     timeout_secs = 30
     retry_count  = 3
 
@@ -11,11 +11,25 @@
     connect_timeout_ms      = 5000
     max_connect_retries     = 5
     port                    = 37777
-    org_name = "Өгөөмөр зах"
+    org_name = "Гэгээнтэн"
     company_name = "ParkEase"
 
     [[cameras]]
-    ip          = "192.168.1.91"
+    ip          = "192.168.2.151"
+    password    = "123456"
+    http_port   = 443
+    gate        = "entrance"
+    sambar_type = "sambar"
+    camera_type = "zk"
+    [[cameras]]
+    ip          = "192.168.2.154"
+    password    = "123456"
+    http_port   = 443
+    gate        = "entrance"
+    sambar_type = "sambar"
+    camera_type = "zk"
+    [[cameras]]
+    ip          = "192.168.2.156"
     password    = "admin123"
     http_port   = 443
     gate        = "entrance"
@@ -23,9 +37,23 @@
     camera_type = "dahua"
 
     [[cameras]]
-    ip          = "192.168.1.87"
+    ip          = "192.168.2.152"
     password    = "123456"
     http_port   = 443
     gate        = "exit"
     sambar_type = "sambar"
     camera_type = "zk"
+    [[cameras]]
+    ip          = "192.168.2.153"
+    password    = "123456"
+    http_port   = 443
+    gate        = "exit"
+    sambar_type = "sambar"
+    camera_type = "zk"
+    [[cameras]]
+    ip          = "192.168.2.155"
+    password    = "admin123"
+    http_port   = 443
+    gate        = "exit"
+    sambar_type = "sambar"
+    camera_type = "dahua"

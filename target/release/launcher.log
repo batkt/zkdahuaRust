@@ -297,3 +297,104 @@
 [2026-04-17 15:07:49] [INFO] Launcher: stop дохио — хоёр процессыг зогсооно
 [2026-04-17 15:07:49] [INFO] [dahua-service] Killed
 [2026-04-17 15:07:49] [INFO] [parking-service] Killed
+[2026-04-20 11:33:55] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\launcher.log
+[2026-04-20 11:33:55] [INFO] Launcher: starting both services...
+[2026-04-20 11:33:56] [INFO] [parking-service] Started (pid=23248)
+[2026-04-20 11:33:59] [INFO] [dahua-service] Started (pid=21912)
+[2026-04-20 11:34:04] [INFO] Launcher: stop дохио — хоёр процессыг зогсооно
+[2026-04-20 11:34:04] [INFO] [dahua-service] Killed
+[2026-04-20 11:34:04] [INFO] [parking-service] Killed
+[2026-04-20 11:35:36] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\launcher.log
+[2026-04-20 11:35:36] [INFO] Launcher: starting both services...
+[2026-04-20 11:35:37] [INFO] [parking-service] Started (pid=14328)
+[2026-04-20 11:35:39] [INFO] [dahua-service] Started (pid=5360)
+[2026-04-20 11:36:19] [INFO] Launcher: stop дохио — хоёр процессыг зогсооно
+[2026-04-20 11:36:19] [INFO] [dahua-service] Killed
+[2026-04-20 11:36:19] [INFO] [parking-service] Killed
+[2026-04-20 11:41:20] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\launcher.log
+[2026-04-20 11:41:20] [INFO] Launcher: starting both services...
+[2026-04-20 11:41:21] [INFO] [parking-service] Started (pid=19084)
+[2026-04-20 11:41:23] [INFO] [dahua-service] Started (pid=22936)
+[2026-04-20 11:42:28] [INFO] Launcher: stop дохио — хоёр процессыг зогсооно
+[2026-04-20 11:42:28] [INFO] [dahua-service] Killed
+[2026-04-20 11:42:28] [INFO] [parking-service] Killed
+[2026-04-20 11:45:38] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\launcher.log
+[2026-04-20 11:45:38] [INFO] Launcher: starting both services...
+[2026-04-20 11:45:39] [INFO] [parking-service] Started (pid=10004)
+[2026-04-20 11:45:41] [INFO] [dahua-service] Started (pid=19056)
+[2026-04-20 11:47:21] [INFO] Launcher: stop дохио — хоёр процессыг зогсооно
+[2026-04-20 11:47:21] [INFO] [dahua-service] Killed
+[2026-04-20 11:47:21] [INFO] [parking-service] Killed
+[2026-04-20 11:53:41] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\launcher.log
+[2026-04-20 11:53:41] [INFO] Launcher: starting both services...
+[2026-04-20 11:53:42] [INFO] [parking-service] Started (pid=17036)
+[2026-04-20 11:53:45] [INFO] [dahua-service] Started (pid=21224)
+[2026-04-20 11:55:10] [INFO] Launcher: stop дохио — хоёр процессыг зогсооно
+[2026-04-20 11:55:10] [INFO] [dahua-service] Killed
+[2026-04-20 11:55:10] [INFO] [parking-service] Killed
+[2026-04-20 12:00:59] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\launcher.log
+[2026-04-20 12:00:59] [INFO] Launcher: starting both services...
+[2026-04-20 12:01:00] [INFO] [parking-service] Started (pid=17336)
+[2026-04-20 12:01:02] [INFO] [dahua-service] Started (pid=20908)
+[2026-04-20 12:04:12] [INFO] Launcher: stop дохио — хоёр процессыг зогсооно
+[2026-04-20 12:04:12] [INFO] [dahua-service] Killed
+[2026-04-20 12:04:12] [INFO] [parking-service] Killed
+[2026-04-20 12:05:15] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\launcher.log
+[2026-04-20 12:05:15] [INFO] Launcher: starting both services...
+[2026-04-20 12:05:16] [INFO] [parking-service] Started (pid=22128)
+[2026-04-20 12:05:18] [INFO] [dahua-service] Started (pid=9672)
+[2026-04-20 14:11:20] [INFO] Launcher: stop дохио — хоёр процессыг зогсооно
+[2026-04-20 14:11:20] [INFO] [dahua-service] Killed
+[2026-04-20 14:11:20] [INFO] [parking-service] Killed
+[2026-04-20 14:11:41] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\launcher.log
+[2026-04-20 14:11:41] [INFO] Launcher: starting both services...
+[2026-04-20 14:11:42] [INFO] [parking-service] Started (pid=16012)
+[2026-04-20 14:11:45] [INFO] [dahua-service] Started (pid=21756)
+[2026-04-20 14:12:05] [INFO] Launcher: stop дохио — хоёр процессыг зогсооно
+[2026-04-20 14:12:05] [INFO] [dahua-service] Killed
+[2026-04-20 14:12:05] [INFO] [parking-service] Killed
+[2026-04-20 14:12:21] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\launcher.log
+[2026-04-20 14:12:21] [INFO] Launcher: starting both services...
+[2026-04-20 14:12:21] [INFO] [parking-service] Started (pid=22844)
+[2026-04-20 14:12:24] [INFO] [dahua-service] Started (pid=10552)
+[2026-04-20 14:13:29] [INFO] Launcher: stop дохио — хоёр процессыг зогсооно
+[2026-04-20 14:13:29] [INFO] [dahua-service] Killed
+[2026-04-20 14:13:29] [INFO] [parking-service] Killed
+[2026-04-20 14:20:16] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\launcher.log
+[2026-04-20 14:20:16] [INFO] Launcher: starting both services...
+[2026-04-20 14:20:17] [INFO] [parking-service] Started (pid=21892)
+[2026-04-20 14:20:19] [INFO] [dahua-service] Started (pid=20272)
+[2026-04-20 14:22:29] [INFO] Launcher: stop дохио — хоёр процессыг зогсооно
+[2026-04-20 14:22:29] [INFO] [dahua-service] Killed
+[2026-04-20 14:22:29] [INFO] [parking-service] Killed
+[2026-04-20 14:26:12] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\launcher.log
+[2026-04-20 14:26:12] [INFO] Launcher: starting both services...
+[2026-04-20 14:26:13] [INFO] [parking-service] Started (pid=24300)
+[2026-04-20 14:26:15] [INFO] [dahua-service] Started (pid=23368)
+[2026-04-20 14:28:45] [INFO] Launcher: stop дохио — хоёр процессыг зогсооно
+[2026-04-20 14:28:45] [INFO] [dahua-service] Killed
+[2026-04-20 14:28:45] [INFO] [parking-service] Killed
+[2026-04-20 14:32:30] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\launcher.log
+[2026-04-20 14:32:30] [INFO] Launcher: starting both services...
+[2026-04-20 14:32:30] [INFO] [parking-service] Started (pid=7188)
+[2026-04-20 14:32:33] [INFO] [dahua-service] Started (pid=13416)
+[2026-04-20 14:47:23] [INFO] Launcher: stop дохио — хоёр процессыг зогсооно
+[2026-04-20 14:47:23] [INFO] [dahua-service] Killed
+[2026-04-20 14:47:23] [INFO] [parking-service] Killed
+[2026-04-20 14:47:57] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\launcher.log
+[2026-04-20 14:47:57] [INFO] Launcher: starting both services...
+[2026-04-20 14:47:57] [INFO] [parking-service] Started (pid=17708)
+[2026-04-20 14:48:00] [INFO] [dahua-service] Started (pid=18492)
+[2026-04-20 15:31:15] [INFO] Launcher: stop дохио — хоёр процессыг зогсооно
+[2026-04-20 15:31:15] [INFO] [dahua-service] Killed
+[2026-04-20 15:31:15] [INFO] [parking-service] Killed
+[2026-04-20 20:44:10] [INFO] Log file: D:\zolbayar\zkdahuaRust\target\release\launcher.log
+[2026-04-20 20:44:10] [INFO] Launcher: starting both services...
+[2026-04-20 20:44:10] [INFO] [parking-service] Started (pid=11752)
+[2026-04-20 20:44:13] [INFO] [dahua-service] Started (pid=14424)
+[2026-04-20 23:35:54] [WARN] [parking-service] Exited with status exit code: 3
+[2026-04-20 23:35:54] [WARN] [parking-service] Not running — restarting...
+[2026-04-20 23:35:55] [INFO] [parking-service] Started (pid=26364)
+[2026-04-20 23:59:35] [WARN] [parking-service] Exited with status exit code: 3
+[2026-04-20 23:59:35] [WARN] [parking-service] Not running — restarting...
+[2026-04-20 23:59:35] [INFO] [parking-service] Started (pid=23408)

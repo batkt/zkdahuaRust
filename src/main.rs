@@ -146,7 +146,7 @@ async fn run_app(cfg: Config) -> anyhow::Result<()> {
         CAMERA_MANAGER.set(manager)
             .map_err(|_| anyhow::anyhow!("CameraManager already initialized"))?;
 
-        api::run_api_server(5000).await;
+        api::run_api_server(5001).await;
         return Ok(());
     }
 
@@ -168,8 +168,12 @@ async fn run_app(cfg: Config) -> anyhow::Result<()> {
         }
     });
 
-    // 5. Start HTTP plate listeners for each camera
+    // 5. Start HTTP plate listeners for Dahua cameras only
     for cam in &cfg.cameras {
+        if cam.camera_type.as_deref() != Some("dahua") {
+            info!("Skipping plate listener for non-Dahua camera {}", cam.ip);
+            continue;
+        }
         let ip       = cam.ip.clone();
         let password = cam.password.clone();
         let port = cam.http_port.unwrap_or(443);
@@ -192,7 +196,7 @@ async fn run_app(cfg: Config) -> anyhow::Result<()> {
     });
 
     // 7. API server
-    tokio::spawn(api::run_api_server(5000));
+    tokio::spawn(api::run_api_server(5001));
 
     // 8. Plate event processor
     info!("Plate event processor started");

@@ -56,8 +56,10 @@ async fn connect_and_read(
     consecutive_failures: &mut u32,
 ) -> anyhow::Result<()> {
     let client = reqwest::Client::builder()
-    .danger_accept_invalid_certs(true)
-    .build()?;
+        .danger_accept_invalid_certs(true)
+        .connect_timeout(std::time::Duration::from_secs(10))
+        .timeout(std::time::Duration::from_secs(60))
+        .build()?;
 
     // First request — get WWW-Authenticate header
     let first = client.get(url).send().await?;
@@ -98,6 +100,12 @@ async fn connect_and_read(
         let text = String::from_utf8_lossy(&chunk);
         buffer.push_str(&text);
 
+        // Guard against runaway buffer if camera sends no newlines
+        if buffer.len() > 64 * 1024 {
+            warn!("[{ip}] Buffer 64KB хэтэрлээ — цэвэрлэж байна");
+            buffer.clear();
+        }
+
         while let Some(newline_pos) = buffer.find('\n') {
             let line = buffer[..newline_pos].trim().to_string();
             buffer = buffer[newline_pos + 1..].to_string();
@@ -121,6 +129,8 @@ async fn connect_and_read(
                             continue;
                         }
                     }
+                    // Purge entries older than 60s to prevent unbounded growth
+                    map.retain(|_, t| now.duration_since(*t).as_secs() < 60);
                     map.insert(key, now);
                 }
 

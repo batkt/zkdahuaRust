@@ -62,10 +62,10 @@ async fn neeye(Path(ip): Path<String>) -> impl IntoResponse {
 async fn sambar(Path((ip, text, dun)): Path<(String, String, String)>) -> impl IntoResponse {
     println!("sambar called for ip: {ip} text: {text} dun: {dun}");
 
-    let (password, is_entrance, org_name, company_name) = CAMERA_MANAGER
+    let (password, is_entrance, org_name, company_name, camera_type) = CAMERA_MANAGER
         .get()
-        .map(|m| (m.password_for_ip(&ip), m.is_entrance(&ip), m.org_name().to_string(), m.company_name().to_string()))
-        .unwrap_or(("admin123".to_string(), false, "ParkEase".to_string(), "ParkEase".to_string()));
+        .map(|m| (m.password_for_ip(&ip), m.is_entrance(&ip), m.org_name().to_string(), m.company_name().to_string(), m.camera_type_for_ip(&ip)))
+        .unwrap_or(("admin123".to_string(), false, "ParkEase".to_string(), "ParkEase".to_string(), "zk".to_string()));
 
     let dun_t = format!("{}T", dun);
     let line1 = if is_entrance { org_name.clone() } else { dun_t.clone() };
@@ -80,20 +80,29 @@ async fn sambar(Path((ip, text, dun)): Path<(String, String, String)>) -> impl I
         "TrafficLatticeScreen[0].CarPass.Contents.[1]=SysTime".to_string(),
     ];
 
+    let scheme = if camera_type == "dahua" { "https" } else { "http" };
     let url = format!(
-        "http://{ip}/cgi-bin/configManager.cgi?action=setConfig&{}",
+        "{scheme}://{ip}/cgi-bin/configManager.cgi?action=setConfig&{}",
         params.join("&")
     );
 
-    println!("[SAMBAR] URL: {url}");
+    let gate = if is_entrance { "entrance" } else { "exit" };
+    println!(">>> Дэлгэц дээр хэвлэж байна | IP: {ip} gate: {gate}");
+    println!("    Мөр 1 (дугаар)      : {text}");
+    println!("    Мөр 2               : {line1}");
+    println!("    Мөр 3               : {line2}");
+    if !carpass_0.is_empty() {
+        println!("    CarPass мөр 1       : {carpass_0}");
+    }
+    println!("    CarPass мөр 2       : SysTime");
 
     match send_sambar_request(&url, &password).await {
         Ok(body) => {
-            println!("sambar response: {body}");
+            println!("<<< Дэлгэц амжилттай хэвлэгдлээ | IP: {ip} (resp={body})");
             (StatusCode::OK, "Amjilttai".to_string())
         }
         Err(e) => {
-            println!("sambar Aldaa: {e}");
+            println!("<<< Дэлгэц хэвлэхэд алдаа | IP: {ip} ({e})");
             (StatusCode::INTERNAL_SERVER_ERROR, "aldaa".to_string())
         }
     }
@@ -104,10 +113,10 @@ async fn sambar_ognootoi(
 ) -> impl IntoResponse {
     println!("sambarOgnootoi called for ip: {ip} text: {text} dun: {dun} start: {start} end: {end}");
 
-    let password = CAMERA_MANAGER
+    let (password, camera_type) = CAMERA_MANAGER
         .get()
-        .map(|m| m.password_for_ip(&ip))
-        .unwrap_or_else(|| "admin123".to_string());
+        .map(|m| (m.password_for_ip(&ip), m.camera_type_for_ip(&ip)))
+        .unwrap_or_else(|| ("admin123".to_string(), "zk".to_string()));
 
     let dun_t = format!("{}T", dun);
 
@@ -123,20 +132,28 @@ async fn sambar_ognootoi(
         "TrafficLatticeScreen[0].CarPass.Contents.[3]=SysTime".to_string(),
     ];
 
+    let scheme = if camera_type == "dahua" { "https" } else { "http" };
     let url = format!(
-        "http://{ip}/cgi-bin/configManager.cgi?action=setConfig&{}",
+        "{scheme}://{ip}/cgi-bin/configManager.cgi?action=setConfig&{}",
         params.join("&")
     );
 
-    println!("[SAMBAR_OGNOOTOI] URL: {url}");
+    println!(">>> Дэлгэц дээр хэвлэж байна | IP: {ip} gate: exit (ognootoi)");
+    println!("    Мөр 1 (дугаар)      : {text}");
+    println!("    Мөр 2 (дүн)         : {dun_t}");
+    println!("    Мөр 3 (эхлэх)       : {start}");
+    println!("    Мөр 4 (дуусах)      : {end}");
+    println!("    CarPass мөр 1       : {text}");
+    println!("    CarPass мөр 2       : {dun_t}");
+    println!("    CarPass мөр 4       : SysTime");
 
     match send_sambar_request(&url, &password).await {
         Ok(body) => {
-            println!("sambarOgnootoi response: {body}");
+            println!("<<< Дэлгэц амжилттай хэвлэгдлээ | IP: {ip} (resp={body})");
             (StatusCode::OK, "Amjilttai".to_string())
         }
         Err(e) => {
-            println!("sambarOgnootoi Aldaa: {e}");
+            println!("<<< Дэлгэц хэвлэхэд алдаа | IP: {ip} ({e})");
             (StatusCode::INTERNAL_SERVER_ERROR, "aldaa".to_string())
         }
     }
