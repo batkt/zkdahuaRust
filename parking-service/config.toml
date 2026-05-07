@@ -15,6 +15,10 @@ search_interval_ms      = 3000
 heartbeat_interval_secs = 30
 connect_timeout_ms      = 5000
 max_connect_retries     = 5
+# Dahua-specific (defaults work if not set)
+dahua_sdk_port          = 37777
+org_name                = "ParkEase"
+company_name            = "ParkEase"
 
 [[cameras]]
 ip          = "192.168.2.151"

@@ -1,4 +1,4 @@
-//! parking-service.exe — Rust port of C# dotnetApi apiController
+//! Combined parking-service.exe — ZK (AlprSDK) + Dahua (dhnetsdk + HTTP stream)
 //!
 //! Usage:
 //!   parking-service.exe install    — install as Windows service
@@ -10,6 +10,9 @@ mod sdk;
 mod config;
 mod callbacks;
 mod camera_manager;
+mod dahua_sdk;
+mod dahua_camera_manager;
+mod dahua_plate_listener;
 mod plate_service;
 mod api;
 
@@ -30,12 +33,13 @@ use windows_service::{
 };
 
 use camera_manager::{CameraManager, CAMERA_MANAGER};
+use dahua_camera_manager::{DahuaCameraManager, DAHUA_MANAGER};
 use plate_service::PlateService;
 use config::Config;
 
 const SERVICE_NAME:    &str = "ParkingService";
 const SERVICE_DISPLAY: &str = "zevzogsoolrust";
-const SERVICE_DESC:    &str = "ZKTeco ALPR camera plate reader with barrier control";
+const SERVICE_DESC:    &str = "ZKTeco + Dahua ALPR parking service with barrier control";
 
 // ─── Windows Service boilerplate ─────────────────────────────────────────────
 
@@ -128,87 +132,143 @@ fn run_service(_args: Vec<OsString>) -> anyhow::Result<()> {
 // ─── Main application logic ───────────────────────────────────────────────────
 
 async fn run_app(cfg: Config) -> anyhow::Result<()> {
-    info!("=== Parking Service starting ===");
+    info!("=== Combined Parking Service starting (ZK + Dahua) ===");
 
-    // 1. Plate event channel (SDK callbacks → async processor)
-    let (plate_tx, mut plate_rx) = mpsc::channel::<camera_manager::PlateEvent>(128);
+    // Shared plate event channel — ZK callbacks and Dahua HTTP listeners both send here
+    let (plate_tx, mut plate_rx) = mpsc::channel::<camera_manager::PlateEvent>(256);
 
-    // 2. Initialise CameraManager — ZK cameras only (Dahua handled by dahua-service)
-    let mut zk_cfg = cfg.clone();
-    zk_cfg.cameras.retain(|c| c.camera_type != "dahua");
-    let manager = CameraManager::new(&zk_cfg, plate_tx);
+    // ── ZK camera manager (handles ALL cameras in cam_cfg for IP lookups,
+    //    but only connects ZK cameras via AlprSDK) ─────────────────────────
+    let manager = CameraManager::new(&cfg, plate_tx.clone());
     CAMERA_MANAGER.set(manager)
-        .map_err(|_| anyhow::anyhow!("CameraManager already initialized"))?;
+        .map_err(|_| anyhow::anyhow!("CAMERA_MANAGER already initialized"))?;
 
-    // 3. Build PlateService for Node.js server posting
-    let plate_svc = std::sync::Arc::new(
-        PlateService::new(cfg.server.clone())?
-    );
+    // ── Dahua camera manager ──────────────────────────────────────────────
+    let dahua_cameras: Vec<(String, String)> = cfg.cameras.iter()
+        .filter(|c| c.camera_type == "dahua")
+        .map(|c| (c.ip.clone(), c.password.clone()))
+        .collect();
 
-    // 4. Startup SDK + connect cameras (blocking — runs in dedicated thread)
-    
+    let dahua_mgr = DahuaCameraManager::new(cfg.sdk.clone());
+    DAHUA_MANAGER.set(dahua_mgr)
+        .map_err(|_| anyhow::anyhow!("DAHUA_MANAGER already initialized"))?;
+
+    // ── PlateService (posts plates to Node.js) ────────────────────────────
+    let plate_svc = std::sync::Arc::new(PlateService::new(cfg.server.clone())?);
+
+    // ── ZK SDK startup + connect (blocking) ──────────────────────────────
     tokio::task::spawn_blocking(move || {
         if let Err(e) = CAMERA_MANAGER.get().unwrap().startup_and_connect() {
-            error!("SDK startup failed: {e}");
+            error!("ZK SDK startup failed: {e}");
         }
     }).await?;
 
-    // 5. Heartbeat loop — fire immediately on startup, then every interval
-    let heartbeat_interval = cfg.sdk.heartbeat_interval_secs;
+    // ── Dahua SDK startup + connect (blocking) ────────────────────────────
+    if !dahua_cameras.is_empty() {
+        let dahua_cams_clone = dahua_cameras.clone();
+        tokio::task::spawn_blocking(move || {
+            let mgr = DAHUA_MANAGER.get().unwrap();
+            if let Err(e) = mgr.startup() {
+                error!("Dahua SDK startup failed: {e}");
+                return;
+            }
+            mgr.connect_cameras(&dahua_cams_clone);
+        }).await?;
+    }
+
+    // ── ZK heartbeat loop ─────────────────────────────────────────────────
+    let zk_interval = cfg.sdk.heartbeat_interval_secs;
     tokio::spawn(async move {
         loop {
             let _ = tokio::task::spawn_blocking(|| {
-                if let Some(mgr) = CAMERA_MANAGER.get() {
-                    mgr.heartbeat();
-                }
+                if let Some(mgr) = CAMERA_MANAGER.get() { mgr.heartbeat(); }
             }).await;
-            tokio::time::sleep(Duration::from_secs(heartbeat_interval)).await;
+            tokio::time::sleep(Duration::from_secs(zk_interval)).await;
         }
     });
 
-    // 6. API server (neeye, sambar, restartConnections)
-    let api_port = 5000u16;
-    tokio::spawn(api::run_api_server(api_port));
-
-    // 7. Plate event processor loop
-    //    Mirrors C# CreateProductAsync() firing per recognition callback
-    info!("Plate event processor started");
-    loop {
-    match plate_rx.recv().await {
-        Some(event) => {
-            let svc = std::sync::Arc::clone(&plate_svc);
-            tokio::spawn(async move {
-                svc.process_plate(&event).await;
-            });
-        }
-        None => {
-            error!("Plate channel closed unexpectedly — service degraded");
-            // keep alive but log it
+    // ── Dahua SDK heartbeat loop ──────────────────────────────────────────
+    if !dahua_cameras.is_empty() {
+        let dahua_cams_hb = dahua_cameras.clone();
+        tokio::spawn(async move {
             loop {
                 tokio::time::sleep(Duration::from_secs(60)).await;
-                error!("Plate channel still closed — restart recommended");
+                let cams = dahua_cams_hb.clone();
+                let _ = tokio::task::spawn_blocking(move || {
+                    if let Some(mgr) = DAHUA_MANAGER.get() {
+                        mgr.check_connections(&cams);
+                    }
+                }).await;
             }
-        }
+        });
+    }
+
+    // ── Dahua HTTP plate listeners (one per Dahua camera) ─────────────────
+    for cam in cfg.cameras.iter().filter(|c| c.camera_type == "dahua") {
+        let ip       = cam.ip.clone();
+        let password = cam.password.clone();
+        let port     = cam.port;
+        let tx       = plate_tx.clone();
+        tokio::spawn(async move {
+            dahua_plate_listener::run_plate_listener(ip, password, port, tx).await;
+        });
+    }
+
+    // ── API servers ───────────────────────────────────────────────────────
+    // Port 5000 — main (ZK + combined)
+    // Port 5001 — Dahua compat (same handlers, separate listener)
+    tokio::spawn(api::run_api_server(5000));
+    tokio::spawn(api::run_api_server(5001));
+    info!("API servers started on ports 5000 (ZK/combined) and 5001 (Dahua compat)");
+
+    // ── Plate event processor ─────────────────────────────────────────────
+    info!("Plate event processor started");
+    loop {
+        match plate_rx.recv().await {
+            Some(event) => {
+                let svc = std::sync::Arc::clone(&plate_svc);
+                tokio::spawn(async move {
+                    svc.process_plate(&event).await;
+                });
+            }
+            None => {
+                error!("Plate channel closed unexpectedly");
+                loop { tokio::time::sleep(Duration::from_secs(60)).await; }
+            }
         }
     }
 }
 
 // ─── Entry point ─────────────────────────────────────────────────────────────
 
+fn disable_quickedit() {
+    use windows_sys::Win32::System::Console::{
+        GetConsoleMode, GetStdHandle, SetConsoleMode, STD_INPUT_HANDLE,
+    };
+    const ENABLE_QUICK_EDIT_MODE: u32 = 0x0040;
+    unsafe {
+        let handle = GetStdHandle(STD_INPUT_HANDLE);
+        let mut mode: u32 = 0;
+        if GetConsoleMode(handle, &mut mode) != 0 {
+            SetConsoleMode(handle, mode & !ENABLE_QUICK_EDIT_MODE);
+        }
+    }
+}
+
 fn main() {
-    // Suppress AlprSDK.dll debug error dialogs
     unsafe {
         windows_sys::Win32::System::Diagnostics::Debug::SetErrorMode(
             windows_sys::Win32::System::Diagnostics::Debug::SEM_NOGPFAULTERRORBOX
         );
     }
+    disable_quickedit();
 
     let args: Vec<String> = std::env::args().collect();
     match args.get(1).map(String::as_str) {
         Some("install")   => install_service(),
         Some("uninstall") => uninstall_service(),
         Some("run")       => run_interactive(),
-        _                 => {
+        _ => {
             service_dispatcher::start(SERVICE_NAME, ffi_service_main)
                 .expect("Service dispatcher failed — run as Windows service or use 'run'");
         }
@@ -218,9 +278,7 @@ fn main() {
 fn run_interactive() {
     init_logging(LevelFilter::Debug);
     println!("Running interactively (not as Windows service)");
-
     let cfg = Config::load().expect("Cannot load config.toml");
-
     tokio::runtime::Builder::new_multi_thread()
         .enable_all()
         .build()
@@ -257,7 +315,12 @@ fn install_service() {
     match manager.create_service(&info, ServiceAccess::CHANGE_CONFIG) {
         Ok(svc) => {
             svc.set_description(SERVICE_DESC).ok();
+            let _ = std::process::Command::new("sc")
+                .args(["failure", SERVICE_NAME, "reset=", "60",
+                       "actions=", "restart/5000/restart/10000/restart/30000"])
+                .output();
             println!("✓ Service '{SERVICE_NAME}' installed.");
+            println!("  Listens on ports 5000 (combined) and 5001 (Dahua compat)");
             println!("  Start: net start {SERVICE_NAME}");
         }
         Err(e) => { eprintln!("✗ Install failed: {e}"); std::process::exit(1); }
@@ -268,14 +331,11 @@ fn uninstall_service() {
     let manager = ServiceManager::local_computer(
         None::<&str>, ServiceManagerAccess::CONNECT,
     ).expect("Open SCM failed");
-
     let svc = manager.open_service(
         SERVICE_NAME, ServiceAccess::DELETE | ServiceAccess::STOP,
     ).expect("Service not found");
-
     let _ = svc.stop();
     std::thread::sleep(Duration::from_secs(2));
-
     match svc.delete() {
         Ok(_)  => println!("✓ Service '{SERVICE_NAME}' removed."),
         Err(e) => { eprintln!("✗ Uninstall failed: {e}"); std::process::exit(1); }
@@ -285,8 +345,8 @@ fn uninstall_service() {
 fn init_logging(level: LevelFilter) {
     let log_path = std::env::current_exe()
         .ok()
-        .and_then(|p| p.parent().map(|d| d.join("error.log")))
-        .unwrap_or_else(|| std::path::PathBuf::from("error.log"));
+        .and_then(|p| p.parent().map(|d| d.join("service.log")))
+        .unwrap_or_else(|| std::path::PathBuf::from("service.log"));
 
     let file_dispatch = fern::Dispatch::new()
         .format(|out, message, record| {
@@ -298,7 +358,7 @@ fn init_logging(level: LevelFilter) {
             ))
         })
         .level(LevelFilter::Error)
-        .chain(fern::log_file(&log_path).expect("Cannot open error.log"));
+        .chain(fern::log_file(&log_path).expect("Cannot open service.log"));
 
     let console_dispatch = fern::Dispatch::new()
         .level(level)

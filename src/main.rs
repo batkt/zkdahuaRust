@@ -220,6 +220,20 @@ async fn run_app(cfg: Config) -> anyhow::Result<()> {
 
 // ─── Entry point ─────────────────────────────────────────────────────────────
 
+fn disable_quickedit() {
+    use windows_sys::Win32::System::Console::{
+        GetConsoleMode, GetStdHandle, SetConsoleMode, STD_INPUT_HANDLE,
+    };
+    const ENABLE_QUICK_EDIT_MODE: u32 = 0x0040;
+    unsafe {
+        let handle = GetStdHandle(STD_INPUT_HANDLE);
+        let mut mode: u32 = 0;
+        if GetConsoleMode(handle, &mut mode) != 0 {
+            SetConsoleMode(handle, mode & !ENABLE_QUICK_EDIT_MODE);
+        }
+    }
+}
+
 fn main() {
     // Suppress debug error dialogs
     unsafe {
@@ -227,6 +241,7 @@ fn main() {
             windows_sys::Win32::System::Diagnostics::Debug::SEM_NOGPFAULTERRORBOX
         );
     }
+    disable_quickedit();
 
     let args: Vec<String> = std::env::args().collect();
     match args.get(1).map(String::as_str) {

@@ -1,7 +1,7 @@
 //! Posts plate events to the Node.js server.
 
 use std::time::Duration;
-use log::{warn, error};
+use log::error;
 use reqwest::Client;
 use serde::Serialize;
 use tokio::time::sleep;

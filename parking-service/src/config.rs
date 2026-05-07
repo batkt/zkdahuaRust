@@ -4,14 +4,17 @@ use anyhow::{Context, Result};
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct Config {
-    pub server: ServerConfig,
+    pub server:  ServerConfig,
     pub cameras: Vec<CameraEntry>,
-    pub sdk: SdkConfig,
+    pub sdk:     SdkConfig,
+    /// Run API only, skip camera SDK init (useful for display-only nodes)
+    #[serde(default)]
+    pub sambar_only: bool,
 }
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct ServerConfig {
-    /// Node.js server URL — e.g. "http://103.143.40.230:8081"
+    /// Node.js server URL
     pub url: String,
     /// JWT bearer token
     pub token: String,
@@ -29,49 +32,64 @@ pub struct ServerConfig {
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct CameraEntry {
-    /// Camera IP (e.g. "192.168.0.11")
+    /// Camera IP
     pub ip: String,
-    /// Web port: 80 or 443 depending on firmware
-    #[serde(rename = "http_port", default = "default_port")]
+    /// Web/HTTP port — ZK uses HTTPS (443), Dahua uses HTTP (80 or 443)
+    /// Accepts both `port` and `http_port` keys in TOML for backward compatibility
+    #[serde(alias = "http_port", default = "default_port")]
     pub port: u16,
-    /// Login password (default "123456" in C# code)
+    /// Login password
     pub password: String,
     /// Gate role: "entrance" or "exit"
+    #[serde(default)]
     pub gate: String,
     /// Camera type: "zk" or "dahua" (default "zk")
     #[serde(default)]
     pub camera_type: String,
+    /// Dahua-specific: sambar display type
+    pub sambar_type: Option<String>,
 }
 
 fn default_port() -> u16 { 443 }
-fn default_search_interval_ms() -> u32 { 3000 }
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct SdkConfig {
     /// Login username (always "admin")
     pub username: String,
-    /// Camera search interval ms (3000 in C# code)
+
+    // ── ZK-specific fields ──────────────────────────────────────────────
+    /// Camera search interval ms
     #[serde(default = "default_search_interval_ms")]
     pub search_interval_ms: u32,
     /// Heartbeat interval seconds
+    #[serde(default = "default_heartbeat_interval")]
     pub heartbeat_interval_secs: u64,
     /// Connection timeout base ms
+    #[serde(default = "default_connect_timeout")]
     pub connect_timeout_ms: u32,
     /// Max connection retries per camera
+    #[serde(default = "default_max_retries")]
     pub max_connect_retries: u32,
+
+    // ── Dahua-specific fields ───────────────────────────────────────────
+    /// Dahua SDK TCP port (default 37777)
+    #[serde(default = "default_dahua_sdk_port")]
+    pub dahua_sdk_port: u16,
+    /// Organisation name shown on Dahua LED screen
+    #[serde(default = "default_org_name")]
+    pub org_name: String,
+    /// Company name shown on Dahua LED screen
+    #[serde(default = "default_company_name")]
+    pub company_name: String,
 }
 
-impl Default for SdkConfig {
-    fn default() -> Self {
-        Self {
-            username: "admin".into(),
-            search_interval_ms: 3000,
-            heartbeat_interval_secs: 30,
-            connect_timeout_ms: 5000,
-            max_connect_retries: 5,
-        }
-    }
-}
+fn default_search_interval_ms() -> u32 { 3000 }
+fn default_heartbeat_interval()  -> u64 { 30 }
+fn default_connect_timeout()     -> u32 { 5000 }
+fn default_max_retries()         -> u32 { 5 }
+fn default_dahua_sdk_port()      -> u16 { 37777 }
+fn default_org_name()            -> String { "ParkEase".to_string() }
+fn default_company_name()        -> String { "ParkEase".to_string() }
 
 impl Config {
     pub fn load() -> Result<Self> {

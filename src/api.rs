@@ -8,7 +8,6 @@ use axum::{
 use log::info;
 use tokio::net::TcpListener;
 use tower_http::cors::{CorsLayer, Any};
-use percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC};
 
 use crate::camera_manager::CAMERA_MANAGER;
 

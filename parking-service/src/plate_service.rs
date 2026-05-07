@@ -8,7 +8,7 @@ use serde::{Serialize, Deserialize};
 use tokio::time::sleep;
 
 use crate::config::ServerConfig;
-use crate::camera_manager::{PlateEvent};
+use crate::camera_manager::{PlateEvent, CAMERA_MANAGER};
 
 // ─── Payload sent to Node.js ──────────────────────────────────────────────────
 //
@@ -47,7 +47,8 @@ impl PlateService {
     }
 
     /// Send plate data to the Node.js server.
-    /// Gate is NOT opened here — the frontend decides and calls /api/neeye/:ip.
+    /// If the server responds with openGate=true, opens gate immediately.
+    /// If the server is unreachable and offline_open_gate=true, opens gate as fallback.
     pub async fn process_plate(&self, event: &PlateEvent) {
         println!("mashinii Dugaar burtgegdlee: {} | IP: {}", event.plate, event.camera_ip);
 
@@ -58,11 +59,30 @@ impl PlateService {
         };
 
         match self.send_with_retry(&payload).await {
-            Ok(_) => {
-                println!("Plate {} serverт илгээгдлээ — хаалга нээхийг frontend шийдэх болно", event.plate);
+            Ok(response) => {
+                println!("Plate {} serverт илгээгдлээ", event.plate);
+                // If server explicitly responds with openGate=true, open gate immediately
+                // without waiting for a separate frontend /api/neeye call.
+                let should_open = response.openGate == Some(true);
+                if should_open {
+                    println!("Server: хаалга нээх → {}", event.camera_ip);
+                    if let Some(mgr) = CAMERA_MANAGER.get() {
+                        let ok = mgr.open_gate(&event.camera_ip);
+                        if !ok {
+                            error!("process_plate: open_gate failed for {}", event.camera_ip);
+                        }
+                    }
+                }
             }
             Err(e) => {
                 error!("Server error for plate {}: {e}", event.plate);
+                // Offline fallback: open gate anyway if configured
+                if self.cfg.offline_open_gate {
+                    warn!("offline_open_gate=true — хаалга offline нөхцөлд нээж байна: {}", event.camera_ip);
+                    if let Some(mgr) = CAMERA_MANAGER.get() {
+                        mgr.open_gate(&event.camera_ip);
+                    }
+                }
             }
         }
     }

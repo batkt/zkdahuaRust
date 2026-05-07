@@ -97,6 +97,22 @@ impl CameraManager {
             .unwrap_or("zk")
     }
 
+    pub fn password_for_ip(&self, ip: &str) -> Option<String> {
+        self.cam_cfg.iter().find(|c| c.ip == ip).map(|c| c.password.clone())
+    }
+
+    pub fn gate_for_ip(&self, ip: &str) -> &str {
+        self.cam_cfg.iter().find(|c| c.ip == ip).map(|c| c.gate.as_str()).unwrap_or("")
+    }
+
+    pub fn org_name(&self) -> &str {
+        &self.sdk_cfg.org_name
+    }
+
+    pub fn company_name(&self) -> &str {
+        &self.sdk_cfg.company_name
+    }
+
     pub fn handle_for_ip(&self, ip: &str) -> Option<i32> {
         let map = self.handle_ip.lock().ok()?;
         map.iter().find(|(_, v)| v.as_str() == ip).map(|(k, _)| *k)

@@ -1,7 +1,7 @@
 [server]
     url          = "https://turees.zevtabs.mn/api/zogsoolSdkService"
-    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MWYwZDVkNTNiODJjYmVkZjBmODFhNyIsIm5lciI6IlNldmVuc3RhciIsImJhaWd1dWxsYWdpaW5JZCI6IjY3MWYwZDVkNTNiODJjYmVkZjBmODFhMyIsInNhbGJhcnV1ZCI6W3sic2FsYmFyaWluSWQiOiI2NzFmMGQ1ZDUzYjgyY2JlZGYwZjgxYTQiLCJkdXVzYWtoT2dub28iOiIyMDI2LTA1LTE2VDE1OjU5OjU5LjAwMFoifV0sImR1dXNha2hPZ25vbyI6IjIwMjYtMDUtMTZUMTU6NTk6NTkuMDAwWiIsImlhdCI6MTc3Njk5Nzg5MSwiZXhwIjoxNzc3MDQxMDkxfQ.irxnX2fNRuRxvh6J6x1yNcI-t52SQO5s518Y3sVez_M"
-    barilgiinId  = "671f0d5d53b82cbedf0f81a4"
+    token        = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YzVmZTkzMGE1ZGM4MWUxNWYxZmI1YyIsIm5lciI6ItCz0Y3Qs9GN0Y3QvdGC0Y3QvSIsImJhaWd1dWxsYWdpaW5JZCI6IjY3MTVlZjJjYTVjZWZiM2U1NDUwNTQyOCIsImlhdCI6MTc3NjY3MTA2Mn0.c6Qh3rrvHGWjRNAut6vvwy4AHsQNNMAxeotw9S4qeSw"
+    barilgiinId  = "69bbd7ccacd5dafa46593dc6"
     timeout_secs = 30
     retry_count  = 3
 
@@ -11,71 +11,49 @@
     connect_timeout_ms      = 5000
     max_connect_retries     = 5
     port                    = 37777
-    org_name = "Өгөөмөр"
+    org_name = "Гэгээнтэн"
     company_name = "ParkEase"
 
     [[cameras]]
-    ip          = "192.168.1.108"
-    password    = "Admin123@"
+    ip          = "192.168.2.151"
+    password    = "123456"
     http_port   = 443
     gate        = "entrance"
     sambar_type = "sambar"
-    camera_type = "dahua"
+    camera_type = "zk"
     [[cameras]]
-    ip          = "192.168.1.206"
-    password    = "Admin123@"
+    ip          = "192.168.2.154"
+    password    = "123456"
     http_port   = 443
     gate        = "entrance"
     sambar_type = "sambar"
-    camera_type = "dahua"
+    camera_type = "zk"
     [[cameras]]
-    ip          = "192.168.1.155"
+    ip          = "192.168.2.156"
     password    = "admin123"
     http_port   = 443
     gate        = "entrance"
     sambar_type = "sambar"
     camera_type = "dahua"
+
     [[cameras]]
-    ip          = "192.168.1.156"
-    password    = "admin123"
-    http_port   = 443
-    gate        = "entrance"
-    sambar_type = "sambar"
-    camera_type = "dahua"
-    [[cameras]]
-    ip          = "192.168.1.157"
-    password    = "admin123"
-    http_port   = 443
-    gate        = "entrance"
-    sambar_type = "sambar"
-    camera_type = "dahua"
-    [[cameras]]
-    ip          = "192.168.1.158"
-    password    = "admin123"
-    http_port   = 443
-    gate        = "entrance"
-    sambar_type = "sambar"
-    camera_type = "dahua"
-    [[cameras]]
-    ip          = "192.168.1.159"
-    password    = "admin123"
-    http_port   = 443
-    gate        = "entrance"
-    sambar_type = "sambar"
-    camera_type = "dahua"
-    [[cameras]]
-    ip          = "192.168.1.160"
-    password    = "admin123"
-    http_port   = 443
-    gate        = "entrance"
-    sambar_type = "sambar"
-    camera_type = "dahua"
-    [[cameras]]
-    ip          = "192.168.1.243"
+    ip          = "192.168.2.152"
     password    = "123456"
     http_port   = 443
     gate        = "exit"
     sambar_type = "sambar"
     camera_type = "zk"
-
-   
+    [[cameras]]
+    ip          = "192.168.2.153"
+    password    = "123456"
+    http_port   = 443
+    gate        = "exit"
+    sambar_type = "sambar"
+    camera_type = "zk"
+    [[cameras]]
+    ip          = "192.168.2.155"
+    password    = "admin123"
+    http_port   = 443
+    gate        = "exit"
+    sambar_type = "sambar"
+    camera_type = "dahua"
