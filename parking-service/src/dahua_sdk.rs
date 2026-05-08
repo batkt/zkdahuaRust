@@ -109,7 +109,10 @@ pub struct DahuaSdk {
 
     pub init_ex:          unsafe extern "system" fn(cbDisConnect: Option<fDisConnectCallBack>, dwUser: *mut c_void, lpInitParam: *mut c_void) -> BOOL,
     pub cleanup:          unsafe extern "system" fn(),
-    pub login_ex2:        unsafe extern "system" fn(pstInParam: *const NET_IN_LOGIN_WITH_HIGHLEVEL_SECURITY, pstOutParam: *mut NET_OUT_LOGIN_WITH_HIGHLEVEL_SECURITY, nWaitTime: c_int) -> HANDLE,
+    /// CLIENT_LoginEx2 — widely supported on all Dahua cameras (primary login)
+    pub login_ex2:        unsafe extern "system" fn(pchDVRIP: *const c_char, wDVRPort: u16, pchUserName: *const c_char, pchPassword: *const c_char, emSpecCap: c_int, pCapParam: *mut c_void, lpDeviceInfo: *mut NET_DEVICEINFO_Ex, nError: *mut c_int) -> HANDLE,
+    /// CLIENT_LoginWithHighLevelSecurity — newer cameras with stricter security (fallback)
+    pub login_highlevel:  unsafe extern "system" fn(pstInParam: *const NET_IN_LOGIN_WITH_HIGHLEVEL_SECURITY, pstOutParam: *mut NET_OUT_LOGIN_WITH_HIGHLEVEL_SECURITY, nWaitTime: c_int) -> HANDLE,
     pub logout:           unsafe extern "system" fn(lLoginID: HANDLE) -> BOOL,
     pub control_device:   unsafe extern "system" fn(lLoginID: HANDLE, emType: c_int, pInBuf: *mut c_void, nWaitTime: c_int) -> BOOL,
     pub get_last_error:   unsafe extern "system" fn() -> DWORD,
@@ -140,13 +143,14 @@ impl DahuaSdk {
             }
 
             Ok(DahuaSdk {
-                init_ex:          sym!(b"CLIENT_InitEx\0",                       unsafe extern "system" fn(Option<fDisConnectCallBack>, *mut c_void, *mut c_void) -> BOOL),
-                cleanup:          sym!(b"CLIENT_Cleanup\0",                      unsafe extern "system" fn()),
-                login_ex2:        sym!(b"CLIENT_LoginWithHighLevelSecurity\0",   unsafe extern "system" fn(*const NET_IN_LOGIN_WITH_HIGHLEVEL_SECURITY, *mut NET_OUT_LOGIN_WITH_HIGHLEVEL_SECURITY, c_int) -> HANDLE),
-                logout:           sym!(b"CLIENT_Logout\0",                       unsafe extern "system" fn(HANDLE) -> BOOL),
-                control_device:   sym!(b"CLIENT_ControlDevice\0",                unsafe extern "system" fn(HANDLE, c_int, *mut c_void, c_int) -> BOOL),
-                get_last_error:   sym!(b"CLIENT_GetLastError\0",                 unsafe extern "system" fn() -> DWORD),
-                set_connect_time: sym!(b"CLIENT_SetConnectTime\0",               unsafe extern "system" fn(c_int, c_int)),
+                init_ex:         sym!(b"CLIENT_InitEx\0",                      unsafe extern "system" fn(Option<fDisConnectCallBack>, *mut c_void, *mut c_void) -> BOOL),
+                cleanup:         sym!(b"CLIENT_Cleanup\0",                     unsafe extern "system" fn()),
+                login_ex2:       sym!(b"CLIENT_LoginEx2\0",                    unsafe extern "system" fn(*const c_char, u16, *const c_char, *const c_char, c_int, *mut c_void, *mut NET_DEVICEINFO_Ex, *mut c_int) -> HANDLE),
+                login_highlevel: sym!(b"CLIENT_LoginWithHighLevelSecurity\0",  unsafe extern "system" fn(*const NET_IN_LOGIN_WITH_HIGHLEVEL_SECURITY, *mut NET_OUT_LOGIN_WITH_HIGHLEVEL_SECURITY, c_int) -> HANDLE),
+                logout:          sym!(b"CLIENT_Logout\0",                      unsafe extern "system" fn(HANDLE) -> BOOL),
+                control_device:  sym!(b"CLIENT_ControlDevice\0",               unsafe extern "system" fn(HANDLE, c_int, *mut c_void, c_int) -> BOOL),
+                get_last_error:  sym!(b"CLIENT_GetLastError\0",                unsafe extern "system" fn() -> DWORD),
+                set_connect_time:sym!(b"CLIENT_SetConnectTime\0",              unsafe extern "system" fn(c_int, c_int)),
                 _lib: lib,
             })
         })

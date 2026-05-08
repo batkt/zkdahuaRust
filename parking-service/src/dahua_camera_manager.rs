@@ -93,28 +93,58 @@ impl DahuaCameraManager {
 
     fn connect_with_retry(sdk: &DahuaSdk, ip: &str, password: &str, cfg: &SdkConfig) -> HANDLE {
         let max  = cfg.max_connect_retries as usize;
-        let port = cfg.dahua_sdk_port as i32;
+        let port = cfg.dahua_sdk_port as u16;
 
         for attempt in 1..=max {
             println!("Dahua холболт {attempt}/{max} — {ip}");
 
+            // ── Try CLIENT_LoginEx2 first (most compatible) ───────────────
+            let ip_cstr  = std::ffi::CString::new(ip).unwrap_or_default();
+            let usr_cstr = std::ffi::CString::new(cfg.username.as_str()).unwrap_or_default();
+            let pwd_cstr = std::ffi::CString::new(password).unwrap_or_default();
+            let mut dev_info = crate::dahua_sdk::NET_DEVICEINFO_Ex::default();
+            let mut err_code: std::ffi::c_int = 0;
+
+            let handle = unsafe {
+                (sdk.login_ex2)(
+                    ip_cstr.as_ptr(),
+                    port,
+                    usr_cstr.as_ptr(),
+                    pwd_cstr.as_ptr(),
+                    0,                          // emSpecCap = TCP
+                    std::ptr::null_mut(),
+                    &mut dev_info,
+                    &mut err_code,
+                )
+            };
+
+            if !handle.is_null() {
+                println!("Dahua LoginEx2 амжилттай: {ip} (attempt {attempt})");
+                return handle;
+            }
+            let sdk_err = unsafe { (sdk.get_last_error)() };
+            warn!("Dahua LoginEx2 амжилтгүй {ip} attempt {attempt}: err={sdk_err:#x} code={err_code:#x}");
+
+            // ── Fallback: CLIENT_LoginWithHighLevelSecurity ───────────────
             let mut in_param  = NET_IN_LOGIN_WITH_HIGHLEVEL_SECURITY::default();
             let mut out_param = NET_OUT_LOGIN_WITH_HIGHLEVEL_SECURITY::default();
-
             fill_ansi(&mut in_param.szIP,       ip);
             fill_ansi(&mut in_param.szUserName, &cfg.username);
             fill_ansi(&mut in_param.szPassword, password);
-            in_param.nPort     = port;
+            in_param.nPort     = port as i32;
             in_param.emSpecCap = 0;
 
-            let handle = unsafe { (sdk.login_ex2)(&in_param, &mut out_param, cfg.connect_timeout_ms as i32) };
-            if !handle.is_null() {
-                println!("Dahua амжилттай холбогдлоо: {ip} (attempt {attempt})");
-                return handle;
-            }
+            let handle2 = unsafe {
+                (sdk.login_highlevel)(&in_param, &mut out_param, cfg.connect_timeout_ms as i32)
+            };
 
-            let err = unsafe { (sdk.get_last_error)() };
-            warn!("Dahua холболт амжилтгүй {ip} attempt {attempt}: error {err:#x}");
+            if !handle2.is_null() {
+                println!("Dahua HighLevel login амжилттай: {ip} (attempt {attempt})");
+                return handle2;
+            }
+            let sdk_err2 = unsafe { (sdk.get_last_error)() };
+            warn!("Dahua HighLevel login амжилтгүй {ip} attempt {attempt}: err={sdk_err2:#x}");
+
             if attempt < max {
                 std::thread::sleep(std::time::Duration::from_millis(1000 * attempt as u64));
             }

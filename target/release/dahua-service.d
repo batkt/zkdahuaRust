@@ -1,1 +1,0 @@
-D:\zolbayar\zkdahuaRust\target\release\dahua-service.exe: D:\zolbayar\zkdahuaRust\src\api.rs D:\zolbayar\zkdahuaRust\src\camera_manager.rs D:\zolbayar\zkdahuaRust\src\config.rs D:\zolbayar\zkdahuaRust\src\main.rs D:\zolbayar\zkdahuaRust\src\plate_listener.rs D:\zolbayar\zkdahuaRust\src\plate_service.rs D:\zolbayar\zkdahuaRust\src\sdk.rs

@@ -9,6 +9,7 @@ use tokio::time::sleep;
 
 use crate::config::ServerConfig;
 use crate::camera_manager::{PlateEvent, CAMERA_MANAGER};
+use crate::dahua_camera_manager::DAHUA_MANAGER;
 
 // ─── Payload sent to Node.js ──────────────────────────────────────────────────
 //
@@ -66,11 +67,9 @@ impl PlateService {
                 let should_open = response.openGate == Some(true);
                 if should_open {
                     println!("Server: хаалга нээх → {}", event.camera_ip);
-                    if let Some(mgr) = CAMERA_MANAGER.get() {
-                        let ok = mgr.open_gate(&event.camera_ip);
-                        if !ok {
-                            error!("process_plate: open_gate failed for {}", event.camera_ip);
-                        }
+                    let ok = open_gate_for_camera(&event.camera_ip).await;
+                    if !ok {
+                        error!("process_plate: open_gate failed for {}", event.camera_ip);
                     }
                 }
             }
@@ -79,9 +78,7 @@ impl PlateService {
                 // Offline fallback: open gate anyway if configured
                 if self.cfg.offline_open_gate {
                     warn!("offline_open_gate=true — хаалга offline нөхцөлд нээж байна: {}", event.camera_ip);
-                    if let Some(mgr) = CAMERA_MANAGER.get() {
-                        mgr.open_gate(&event.camera_ip);
-                    }
+                    open_gate_for_camera(&event.camera_ip).await;
                 }
             }
         }
@@ -126,5 +123,23 @@ impl PlateService {
             let body = resp.text().await.unwrap_or_default();
             anyhow::bail!("HTTP {status}: {body}")
         }
+    }
+}
+
+/// Route gate open to the correct manager (ZK or Dahua) based on camera type.
+/// Async so Dahua's blocking SDK call runs on a dedicated thread via spawn_blocking.
+async fn open_gate_for_camera(ip: &str) -> bool {
+    let is_dahua = CAMERA_MANAGER.get()
+        .map(|m| m.camera_type_for_ip(ip) == "dahua")
+        .unwrap_or(false);
+
+    if is_dahua {
+        let ip_owned = ip.to_string();
+        tokio::task::spawn_blocking(move || {
+            DAHUA_MANAGER.get().map(|m| m.open_gate(&ip_owned)).unwrap_or(false)
+        }).await.unwrap_or(false)
+    } else {
+        // ZK gate_tx send is non-blocking (buffered sync channel)
+        CAMERA_MANAGER.get().map(|m| m.open_gate(ip)).unwrap_or(false)
     }
 }
